@@ -27,7 +27,19 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+/* ------------------------------------------------------------------ */
+/*  Analytics helper                                                    */
+/* ------------------------------------------------------------------ */
+
+const trackEvent = (event_type: string, event_data: Record<string, string> = {}, page = "landing") => {
+  fetch("/api/analytics", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event_type, event_data, page }),
+  }).catch(() => {});
+};
 
 /* ------------------------------------------------------------------ */
 /*  Animation variants                                                 */
@@ -258,6 +270,10 @@ const keyframeStyles = `
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    trackEvent("page_view", document.referrer ? { referrer: document.referrer } : {}, "landing");
+  }, []);
+
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <style dangerouslySetInnerHTML={{ __html: keyframeStyles }} />
@@ -292,7 +308,7 @@ export default function LandingPage() {
                 Login
               </Button>
             </Link>
-            <Link href="/onboarding">
+            <Link href="/onboarding" onClick={() => trackEvent("cta_click", { button: "comecar_gratis" })}>
               <Button
                 size="sm"
                 className="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 shadow-lg shadow-green-500/20 transition-all duration-300 hover:shadow-green-500/40 hover:scale-105"
@@ -327,7 +343,7 @@ export default function LandingPage() {
                 <Link href="/login" className="flex-1">
                   <Button variant="outline" size="sm" className="w-full border-white/10">Login</Button>
                 </Link>
-                <Link href="/onboarding" className="flex-1">
+                <Link href="/onboarding" className="flex-1" onClick={() => trackEvent("cta_click", { button: "comecar_gratis" })}>
                   <Button size="sm" className="w-full bg-gradient-to-r from-green-600 to-lime-600">Começar Grátis</Button>
                 </Link>
               </div>
@@ -449,7 +465,7 @@ export default function LandingPage() {
               transition={{ duration: 0.6 }}
               className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center pt-2"
             >
-              <Link href="/onboarding">
+              <Link href="/onboarding" onClick={() => trackEvent("cta_click", { button: "comecar_jornada" })}>
                 <Button
                   size="lg"
                   className="group h-14 px-10 text-lg bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 shadow-xl shadow-green-500/25 transition-all duration-300 hover:shadow-green-500/40 hover:scale-[1.02]"
@@ -924,7 +940,7 @@ export default function LandingPage() {
               </motion.p>
 
               <motion.div variants={fadeInUp} transition={{ duration: 0.5 }}>
-                <Link href="/onboarding">
+                <Link href="/onboarding" onClick={() => trackEvent("cta_click", { button: "comece_agora" })}>
                   <Button
                     size="lg"
                     className="group h-16 px-12 text-lg bg-white text-green-900 font-semibold hover:bg-white/90 shadow-2xl shadow-black/20 transition-all duration-300 hover:scale-105 hover:shadow-white/20"
@@ -969,6 +985,7 @@ export default function LandingPage() {
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 text-black font-semibold shadow-lg shadow-green-500/20 px-8"
+                  onClick={() => trackEvent("cta_click", { button: "enterprise_contact" }, "landing")}
                 >
                   Fale Conosco
                   <ArrowRight className="ml-2 h-4 w-4" />

@@ -132,6 +132,21 @@ create table checkins (
 );
 
 
+-- analytics: Simple event tracking
+create table analytics (
+  id uuid primary key default gen_random_uuid(),
+  event_type text not null,
+  event_data jsonb default '{}',
+  page text,
+  user_agent text,
+  ip text,
+  created_at timestamptz default now()
+);
+
+create index idx_analytics_event_type on analytics(event_type);
+create index idx_analytics_created_at on analytics(created_at);
+
+
 -- -----------------------------------------------------------------------------
 -- 3. Indexes
 -- -----------------------------------------------------------------------------
@@ -187,3 +202,21 @@ create policy "pdis_all" on pdis for all using (true) with check (true);
 create policy "pdi_items_all" on pdi_items for all using (true) with check (true);
 create policy "course_recommendations_all" on course_recommendations for all using (true) with check (true);
 create policy "checkins_all" on checkins for all using (true) with check (true);
+
+alter table analytics enable row level security;
+create policy "analytics_all" on analytics for all using (true) with check (true);
+
+-- leads: Captured interest/phone from premium and enterprise
+create table leads (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references users(id) on delete set null,
+  name text,
+  email text,
+  phone text,
+  source text not null,
+  created_at timestamptz default now()
+);
+
+create index idx_leads_source on leads(source);
+alter table leads enable row level security;
+create policy "leads_all" on leads for all using (true) with check (true);

@@ -164,6 +164,14 @@ export default function DashboardPage() {
     loadDashboardData();
   }, [loadDashboardData]);
 
+  useEffect(() => {
+    fetch("/api/analytics", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ event_type: "page_view", page: "dashboard" }),
+    }).catch(() => {});
+  }, []);
+
   // Computed values
   const completedAssessments = assessments.filter(
     (a) => a.status === "completed"
