@@ -22,6 +22,7 @@ import {
   Zap,
   Menu,
   X,
+  Building2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -479,7 +480,7 @@ export default function LandingPage() {
                 {[
                   { value: "5", label: "Assessments" },
                   { value: "IA", label: "Personalizada" },
-                  { value: "100%", label: "Gratuito" },
+                  { value: "PDI", label: "Completo" },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
                     <div className="text-2xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
@@ -936,6 +937,46 @@ export default function LandingPage() {
             </div>
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* EMPRESAS                                                      */}
+      {/* ============================================================ */}
+      <section className="relative px-6 py-20">
+        <div className="mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-transparent to-lime-500/5" />
+            <div className="relative flex flex-col items-center gap-6 px-8 py-14 text-center sm:flex-row sm:text-left sm:px-14">
+              <div className="flex-1 space-y-3">
+                <div className="inline-flex items-center gap-2 rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400">
+                  <Building2 className="h-3.5 w-3.5" />
+                  Para Empresas
+                </div>
+                <h3 className="text-2xl font-bold text-white sm:text-3xl">
+                  Quer aplicar na sua empresa?
+                </h3>
+                <p className="text-muted-foreground max-w-lg">
+                  Desenvolva seus colaboradores com assessments de autoconhecimento, PDIs personalizados e acompanhamento contínuo em escala.
+                </p>
+              </div>
+              <div className="shrink-0">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 text-black font-semibold shadow-lg shadow-green-500/20 px-8"
+                >
+                  Fale Conosco
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ============================================================ */}
