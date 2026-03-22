@@ -18,6 +18,7 @@ import {
   Loader2,
   Check,
   Sparkles,
+  Lock,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -45,6 +46,7 @@ const onboardingSchema = z.object({
   // Step 1
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
   email: z.string().email("E-mail invalido"),
+  password: z.string().min(6, "Senha deve ter pelo menos 6 caracteres"),
   job_role: z.string().optional(),
   area: z.string().optional(),
   experience_years: z.coerce.number().min(0).max(50).optional(),
@@ -167,6 +169,7 @@ export default function OnboardingPage() {
     defaultValues: {
       name: "",
       email: "",
+      password: "",
       job_role: "",
       area: "",
       experience_years: undefined,
@@ -187,7 +190,7 @@ export default function OnboardingPage() {
   const goNext = async () => {
     let fieldsToValidate: (keyof OnboardingFormData)[] = [];
     if (step === 0) {
-      fieldsToValidate = ["name", "email"];
+      fieldsToValidate = ["name", "email", "password"];
     }
     const isValid = await trigger(fieldsToValidate);
     if (!isValid) return;
@@ -438,6 +441,27 @@ export default function OnboardingPage() {
                         </p>
                       )}
                     </div>
+                  </div>
+
+                  {/* Password */}
+                  <div className="space-y-2">
+                    <Label className="text-purple-200">
+                      Senha <span className="text-red-400">*</span>
+                    </Label>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-purple-400/40" />
+                      <Input
+                        {...register("password")}
+                        type="password"
+                        placeholder="Crie uma senha segura"
+                        className="pl-10 bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50"
+                      />
+                    </div>
+                    {errors.password && (
+                      <p className="text-red-400 text-xs">
+                        {errors.password.message}
+                      </p>
+                    )}
                   </div>
 
                   {/* Role & Area */}

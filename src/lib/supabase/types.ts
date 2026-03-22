@@ -14,6 +14,7 @@ export type Database = {
           id: string;
           email: string;
           name: string;
+          password_hash: string;
           photo_url: string | null;
           job_role: string | null;
           area: string | null;
@@ -35,6 +36,7 @@ export type Database = {
           id?: string;
           email: string;
           name: string;
+          password_hash?: string;
           photo_url?: string | null;
           job_role?: string | null;
           area?: string | null;
@@ -56,6 +58,7 @@ export type Database = {
           id?: string;
           email?: string;
           name?: string;
+          password_hash?: string;
           photo_url?: string | null;
           job_role?: string | null;
           area?: string | null;

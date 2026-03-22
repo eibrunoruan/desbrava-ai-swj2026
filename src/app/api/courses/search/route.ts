@@ -17,16 +17,14 @@ export async function POST(req: NextRequest) {
     const supabase = supabaseAdmin;
 
     // Fetch user data for personalization
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: user } = await (supabase as any)
+    const { data: user } = await supabase
       .from("users")
       .select("*")
       .eq("id", userId)
       .single();
 
-    // Fetch MBTI assessment for learning style
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: mbtiAssessment } = await (supabase as any)
+    // Fetch MBTI for learning style
+    const { data: mbtiAssessment } = await supabase
       .from("assessments")
       .select("results")
       .eq("user_id", userId)
@@ -34,135 +32,121 @@ export async function POST(req: NextRequest) {
       .eq("status", "completed")
       .maybeSingle();
 
-    // Fetch flow assessment for challenge preferences
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: flowAssessment } = await (supabase as any)
-      .from("assessments")
-      .select("results")
-      .eq("user_id", userId)
-      .eq("type", "flow")
-      .eq("status", "completed")
-      .maybeSingle();
-
-    const languages = user?.languages ?? ["PT-BR"];
+    const languages = (user?.languages as string[]) ?? ["Portugues"];
     const mbtiType = mbtiAssessment?.results
       ? JSON.stringify(mbtiAssessment.results)
       : "not available";
-    const flowData = flowAssessment?.results
-      ? JSON.stringify(flowAssessment.results)
-      : "not available";
-    const userRole = user?.job_role ?? "professional";
-    const targetRole = user?.target_role ?? "";
+    const userRole = (user?.job_role as string) ?? "professional";
+    const targetRole = (user?.target_role as string) ?? "";
 
-    const systemPrompt = `You are a course recommendation engine for career development. You must respond ONLY with valid JSON, no markdown or explanation.
+    const systemPrompt = `Você é um motor de recomendação de cursos da Udemy para desenvolvimento de carreira.
+Responda SOMENTE com JSON válido puro, sem markdown, sem crases, sem explicação.
 
-Generate 6 course recommendations for learning "${skill}".
+Gere 6 recomendações de cursos REAIS e populares da Udemy para aprender "${skill}".
 
-User context:
-- Current role: ${userRole}
-- Target role: ${targetRole}
-- MBTI/Learning style: ${mbtiType}
-- Flow/Challenge preferences: ${flowData}
-- Language preferences: ${JSON.stringify(languages)}
+Contexto do usuário:
+- Cargo atual: ${userRole}
+- Cargo alvo: ${targetRole}
+- Estilo de aprendizagem (MBTI): ${mbtiType}
+- Idiomas: ${JSON.stringify(languages)}
 
-Rules:
-- Generate realistic Udemy-style courses
-- URLs should follow format: https://www.udemy.com/course/[slug]/
-- Platform is always "Udemy"
-- Rating between 4.5 and 5.0
-- students_count between 1000 and 500000
-- price between 27.90 and 199.90 (BRL)
-- duration as string like "12h", "24h", "40h"
-- language should be "PT-BR" or "EN" based on user preferences
-- compatibility_score between 60 and 100, based on how well the course matches the user's learning style and goals
-- Higher compatibility for courses that match introvert/extrovert learning preferences
-- Higher compatibility for courses that match the user's challenge level preference
+Regras IMPORTANTES:
+- Use nomes de cursos que realmente existem ou são muito prováveis de existir na Udemy
+- Para o campo "search_slug", crie palavras-chave de busca concisas (2-4 palavras) que encontrariam o curso na Udemy
+- Platform é sempre "Udemy"
+- Rating entre 4.5 e 5.0
+- students_count entre 5000 e 500000
+- price entre 27.90 e 199.90 (BRL)
+- duration como string: "12h", "24h", "40h" etc
+- language: "PT-BR" ou "EN" baseado nas preferências do usuário
+- compatibility_score entre 60 e 100
 
-Respond with this exact JSON structure:
-{
-  "courses": [
-    {
-      "title": "string",
-      "url": "string",
-      "platform": "Udemy",
-      "rating": number,
-      "students_count": number,
-      "price": number,
-      "duration": "string",
-      "language": "string",
-      "compatibility_score": number
-    }
-  ]
-}`;
+Responda com esta estrutura JSON exata:
+{"courses":[{"title":"string","search_slug":"string","platform":"Udemy","rating":4.7,"students_count":25000,"price":94.90,"duration":"24h","language":"PT-BR","compatibility_score":85}]}`;
 
-    const userPrompt = `Generate 6 course recommendations for learning: "${skill}"`;
+    const userPrompt = `Gere 6 recomendações de cursos reais da Udemy para: "${skill}"`;
 
     const response = await generateWithGroq(systemPrompt, userPrompt);
 
     let courses;
     try {
-      // Strip markdown code fences if present
       let jsonStr = response.trim();
-      jsonStr = jsonStr.replace(/^```(?:json)?\s*\n?/i, "").replace(/\n?\s*```\s*$/i, "").trim();
+      jsonStr = jsonStr
+        .replace(/^```(?:json)?\s*\n?/i, "")
+        .replace(/\n?\s*```\s*$/i, "")
+        .trim();
       const parsed = JSON.parse(jsonStr);
       courses = parsed.courses;
     } catch {
       console.error("Failed to parse Groq response:", response);
       return NextResponse.json(
-        { error: "Failed to parse AI response" },
+        { error: "Falha ao processar resposta da IA" },
         { status: 500 }
       );
     }
 
     if (!Array.isArray(courses) || courses.length === 0) {
       return NextResponse.json(
-        { error: "No courses generated" },
-        { status: 500 }
+        { error: "Nenhum curso encontrado" },
+        { status: 404 }
       );
     }
 
-    // If we have a pdiItemId, save to database
-    const savedCourses = [];
-    const effectivePdiItemId = pdiItemId || null;
+    // Build real Udemy search URLs for each course
+    const enrichedCourses = courses.map(
+      (course: {
+        title: string;
+        search_slug?: string;
+        platform: string;
+        rating: number;
+        students_count: number;
+        price: number;
+        duration: string;
+        language: string;
+        compatibility_score: number;
+      }) => ({
+        title: course.title,
+        url: `https://www.udemy.com/courses/search/?q=${encodeURIComponent(course.search_slug || course.title)}&sort=relevance&ratings=4.5`,
+        platform: course.platform || "Udemy",
+        rating: course.rating,
+        students_count: course.students_count,
+        price: course.price,
+        duration: course.duration,
+        language: course.language,
+        compatibility_score: course.compatibility_score,
+      })
+    );
 
-    if (effectivePdiItemId) {
-      for (const course of courses) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const { data, error } = await (supabase as any)
-          .from("course_recommendations")
-          .insert({
-            pdi_item_id: effectivePdiItemId,
-            user_id: userId,
-            title: course.title,
-            url: course.url,
-            platform: course.platform,
-            rating: course.rating,
-            students_count: course.students_count,
-            price: course.price,
-            duration: course.duration,
-            language: course.language,
-            compatibility_score: course.compatibility_score,
-          })
-          .select()
-          .single();
+    // Sort by compatibility_score descending
+    enrichedCourses.sort(
+      (a: { compatibility_score: number }, b: { compatibility_score: number }) =>
+        b.compatibility_score - a.compatibility_score
+    );
 
-        if (!error && data) {
-          savedCourses.push(data);
-        }
+    // Save to database if linked to a PDI item
+    if (pdiItemId) {
+      for (const course of enrichedCourses) {
+        await supabase.from("course_recommendations").insert({
+          pdi_item_id: pdiItemId,
+          user_id: userId,
+          title: course.title,
+          url: course.url,
+          platform: course.platform,
+          rating: course.rating,
+          students_count: course.students_count,
+          price: course.price,
+          duration: course.duration,
+          language: course.language,
+          compatibility_score: course.compatibility_score,
+        });
       }
     }
 
-    // Sort by compatibility_score descending
-    const sortedCourses = (savedCourses.length > 0 ? savedCourses : courses).sort(
-      (a: { compatibility_score: number }, b: { compatibility_score: number }) =>
-        (b.compatibility_score ?? 0) - (a.compatibility_score ?? 0)
-    );
-
-    return NextResponse.json({ courses: sortedCourses });
+    return NextResponse.json({ courses: enrichedCourses });
   } catch (err) {
     console.error("Course search error:", err);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Erro interno do servidor" },
       { status: 500 }
     );
   }

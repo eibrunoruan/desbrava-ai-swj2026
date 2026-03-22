@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+
+const hashPassword = (pw: string) => createHash("sha256").update(pw).digest("hex");
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,12 +20,14 @@ export async function POST(request: NextRequest) {
 
     const data = JSON.parse(rawData);
 
-    if (!data.email || !data.name) {
+    if (!data.email || !data.name || !data.password) {
       return NextResponse.json(
-        { error: "Nome e e-mail sao obrigatorios" },
+        { error: "Nome, e-mail e senha sao obrigatorios" },
         { status: 400 }
       );
     }
+
+    const password_hash = hashPassword(data.password);
 
     const supabase = supabaseAdmin;
 
@@ -67,6 +72,7 @@ export async function POST(request: NextRequest) {
     const userRecord = {
       email: data.email,
       name: data.name,
+      password_hash,
       job_role: data.job_role || null,
       area: data.area || null,
       experience_years: data.experience_years != null ? Number(data.experience_years) : null,
@@ -127,7 +133,9 @@ export async function POST(request: NextRequest) {
       user = newUser;
     }
 
-    return NextResponse.json({ user }, { status: 200 });
+    // Remove password_hash from response
+    const { password_hash: _ph, ...safeUser } = user;
+    return NextResponse.json({ user: safeUser }, { status: 200 });
   } catch (error) {
     console.error("Onboarding API error:", error);
     return NextResponse.json(

@@ -608,10 +608,18 @@ function IkigaiStep({
             {stepData.suggestions.map((suggestion) => {
               const isSelected = currentItems.includes(suggestion);
               return (
-                <button
+                <div
+                  role="button"
+                  tabIndex={0}
                   key={suggestion}
                   onClick={() => toggleSuggestion(suggestion)}
-                  className={`text-left text-sm p-3 rounded-lg border transition-all ${
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      toggleSuggestion(suggestion);
+                    }
+                  }}
+                  className={`cursor-pointer text-left text-sm p-3 rounded-lg border transition-all ${
                     isSelected
                       ? "border-purple-500/50 bg-purple-500/10"
                       : "border-white/10 bg-white/5 hover:border-white/30"
@@ -621,7 +629,7 @@ function IkigaiStep({
                     <Checkbox checked={isSelected} className="pointer-events-none" />
                     <span>{suggestion}</span>
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>

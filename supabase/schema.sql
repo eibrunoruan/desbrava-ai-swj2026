@@ -25,6 +25,7 @@ create table users (
   id                    uuid        primary key default gen_random_uuid(),
   email                 text        unique not null,
   name                  text        not null,
+  password_hash         text,
   photo_url             text,
   job_role          text,
   area                  text,

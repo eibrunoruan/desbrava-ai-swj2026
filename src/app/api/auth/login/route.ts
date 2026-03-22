@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+
+const hashPassword = (pw: string) => createHash("sha256").update(pw).digest("hex");
 
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
+    const { email, password } = await req.json();
 
-    if (!email) {
+    if (!email || !password) {
       return NextResponse.json(
-        { error: "E-mail é obrigatório" },
+        { error: "E-mail e senha são obrigatórios" },
         { status: 400 }
       );
     }
@@ -20,12 +23,23 @@ export async function POST(req: NextRequest) {
 
     if (error || !user) {
       return NextResponse.json(
-        { error: "Nenhuma conta encontrada com este e-mail. Faça o onboarding primeiro." },
-        { status: 404 }
+        { error: "E-mail ou senha incorretos" },
+        { status: 401 }
       );
     }
 
-    return NextResponse.json({ user });
+    const providedHash = hashPassword(password);
+
+    if (user.password_hash !== providedHash) {
+      return NextResponse.json(
+        { error: "E-mail ou senha incorretos" },
+        { status: 401 }
+      );
+    }
+
+    // Remove password_hash from response
+    const { password_hash: _ph, ...safeUser } = user;
+    return NextResponse.json({ user: safeUser });
   } catch {
     return NextResponse.json(
       { error: "Erro interno do servidor" },
