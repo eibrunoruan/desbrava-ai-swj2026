@@ -40,6 +40,7 @@ create table users (
   cv_url                text,
   cv_extracted_data     jsonb,
   onboarding_completed  boolean     default false,
+  plan                  text        default 'free' check (plan in ('free', 'premium')),
   created_at            timestamptz default now(),
   updated_at            timestamptz default now()
 );

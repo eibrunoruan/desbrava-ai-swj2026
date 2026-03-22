@@ -18,6 +18,7 @@ import {
   Loader2,
   AlertCircle,
   Zap,
+  Crown,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import {
@@ -290,7 +291,7 @@ export default function DashboardPage() {
     return (
       <div className="flex h-[60vh] items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-8 w-8 animate-spin text-purple-400" />
+          <Loader2 className="h-8 w-8 animate-spin text-green-400" />
           <p className="text-sm text-muted-foreground">
             Carregando seu dashboard...
           </p>
@@ -316,7 +317,7 @@ export default function DashboardPage() {
           <div>
             <h1 className="text-3xl font-bold">
               Ola,{" "}
-              <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
                 {displayName}
               </span>
               !
@@ -327,20 +328,47 @@ export default function DashboardPage() {
           </div>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-purple-400" />
+              <CheckCircle2 className="h-3.5 w-3.5 text-green-400" />
               <span>
                 {completedAssessments}/{totalAssessments} assessments
               </span>
             </div>
             {pdi && (
               <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-                <Route className="h-3.5 w-3.5 text-indigo-400" />
+                <Route className="h-3.5 w-3.5 text-lime-400" />
                 <span>{pdiProgress}% PDI</span>
               </div>
             )}
           </div>
         </div>
       </motion.div>
+
+      {/* Premium Upgrade Banner */}
+      {(!user?.plan || user.plan === "free") && (
+        <motion.div variants={fadeInUp}>
+          <Card className="overflow-hidden border-green-500/20 bg-gradient-to-r from-green-500/10 via-lime-500/10 to-lime-500/10">
+            <CardContent className="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-green-500/30 to-lime-500/30 ring-1 ring-green-500/30">
+                  <Crown className="h-6 w-6 text-green-400" />
+                </div>
+                <div>
+                  <p className="font-semibold">Upgrade para Premium</p>
+                  <p className="text-sm text-muted-foreground">
+                    Desbloqueie PDI personalizado, curadoria de cursos e mais
+                  </p>
+                </div>
+              </div>
+              <Link href="/pricing">
+                <Button className="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-700 hover:to-lime-700 shadow-lg shadow-green-500/20">
+                  <Crown className="mr-2 h-4 w-4" />
+                  Ver Planos
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </motion.div>
+      )}
 
       {/* Check-in Reminder */}
       {needsCheckin && pdi && (
@@ -382,10 +410,10 @@ export default function DashboardPage() {
       >
         {/* Assessment Progress */}
         <motion.div variants={fadeInUp}>
-          <Card className="group relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5">
+          <Card className="group relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/5">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-indigo-500">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-lime-500">
                   <ClipboardCheck className="h-5 w-5 text-white" />
                 </div>
                 <Link href="/assessments">
@@ -414,10 +442,10 @@ export default function DashboardPage() {
 
         {/* PDI Progress */}
         <motion.div variants={fadeInUp}>
-          <Card className="group relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5">
+          <Card className="group relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/5">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-blue-500">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-lime-500 to-blue-500">
                   <Route className="h-5 w-5 text-white" />
                 </div>
                 <Link href="/pdi">
@@ -448,10 +476,10 @@ export default function DashboardPage() {
 
         {/* Readiness Score */}
         <motion.div variants={fadeInUp}>
-          <Card className="group relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5">
+          <Card className="group relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/5">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-purple-500">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-lime-500 to-green-500">
                   <Gauge className="h-5 w-5 text-white" />
                 </div>
                 <Link href="/profile">
@@ -490,7 +518,7 @@ export default function DashboardPage() {
                     </ResponsiveContainer>
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-purple-400">
+                    <p className="text-2xl font-bold text-green-400">
                       {readinessScore}
                     </p>
                     <p className="text-xs text-muted-foreground">de 100</p>
@@ -516,7 +544,7 @@ export default function DashboardPage() {
           <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-base flex items-center gap-2">
-                <ClipboardCheck className="h-4 w-4 text-purple-400" />
+                <ClipboardCheck className="h-4 w-4 text-green-400" />
                 Status dos Assessments
               </CardTitle>
             </CardHeader>
@@ -567,7 +595,7 @@ export default function DashboardPage() {
           <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-base flex items-center gap-2">
-                <Route className="h-4 w-4 text-indigo-400" />
+                <Route className="h-4 w-4 text-lime-400" />
                 Progresso por Modulo
               </CardTitle>
             </CardHeader>
@@ -609,7 +637,7 @@ export default function DashboardPage() {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="border-purple-500/30 hover:bg-purple-500/10"
+                      className="border-green-500/30 hover:bg-green-500/10"
                     >
                       Ir para Assessments
                     </Button>
@@ -632,7 +660,7 @@ export default function DashboardPage() {
             <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4 text-purple-400" />
+                  <TrendingUp className="h-4 w-4 text-green-400" />
                   Tendencia de Motivacao
                 </CardTitle>
                 <CardDescription className="text-xs">
@@ -712,7 +740,7 @@ export default function DashboardPage() {
                     <div key={index}>
                       <div className="flex items-center gap-3">
                         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/5">
-                          <activity.icon className="h-4 w-4 text-purple-400" />
+                          <activity.icon className="h-4 w-4 text-green-400" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm truncate">{activity.label}</p>
@@ -750,30 +778,30 @@ export default function DashboardPage() {
       {nextActions.length > 0 && (
         <motion.div className="space-y-4" variants={fadeInUp}>
           <h2 className="text-lg font-semibold flex items-center gap-2">
-            <Target className="h-4 w-4 text-purple-400" />
+            <Target className="h-4 w-4 text-green-400" />
             Proximos Passos
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {nextActions.map((action, index) => (
               <Link key={index} href={action.href}>
-                <Card className="group h-full cursor-pointer border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-purple-500/30 hover:bg-white/10">
+                <Card className="group h-full cursor-pointer border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-green-500/30 hover:bg-white/10">
                   <CardContent className="flex items-center gap-3 p-4">
                     <div
                       className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
                         action.priority === "high"
-                          ? "bg-purple-500/20"
+                          ? "bg-green-500/20"
                           : action.priority === "medium"
-                          ? "bg-indigo-500/20"
-                          : "bg-violet-500/20"
+                          ? "bg-lime-500/20"
+                          : "bg-lime-500/20"
                       }`}
                     >
                       <ArrowRight
                         className={`h-4 w-4 ${
                           action.priority === "high"
-                            ? "text-purple-400"
+                            ? "text-green-400"
                             : action.priority === "medium"
-                            ? "text-indigo-400"
-                            : "text-violet-400"
+                            ? "text-lime-400"
+                            : "text-lime-400"
                         }`}
                       />
                     </div>
@@ -785,10 +813,10 @@ export default function DashboardPage() {
                         variant="outline"
                         className={`mt-1 text-xs ${
                           action.priority === "high"
-                            ? "border-purple-500/30 text-purple-400"
+                            ? "border-green-500/30 text-green-400"
                             : action.priority === "medium"
-                            ? "border-indigo-500/30 text-indigo-400"
-                            : "border-violet-500/30 text-violet-400"
+                            ? "border-lime-500/30 text-lime-400"
+                            : "border-lime-500/30 text-lime-400"
                         }`}
                       >
                         {action.priority === "high"
@@ -813,7 +841,7 @@ export default function DashboardPage() {
           <Link href="/assessments">
             <Button
               variant="outline"
-              className="border-purple-500/30 hover:bg-purple-500/10"
+              className="border-green-500/30 hover:bg-green-500/10"
             >
               <ClipboardCheck className="mr-2 h-4 w-4" />
               Continuar Assessment
@@ -822,7 +850,7 @@ export default function DashboardPage() {
           <Link href="/pdi">
             <Button
               variant="outline"
-              className="border-indigo-500/30 hover:bg-indigo-500/10"
+              className="border-lime-500/30 hover:bg-lime-500/10"
             >
               <Route className="mr-2 h-4 w-4" />
               Ver PDI
@@ -831,7 +859,7 @@ export default function DashboardPage() {
           <Link href="/checkin">
             <Button
               variant="outline"
-              className="border-violet-500/30 hover:bg-violet-500/10"
+              className="border-lime-500/30 hover:bg-lime-500/10"
             >
               <CalendarCheck className="mr-2 h-4 w-4" />
               Fazer Check-in

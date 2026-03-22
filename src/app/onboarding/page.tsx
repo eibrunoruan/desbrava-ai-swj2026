@@ -361,13 +361,13 @@ export default function OnboardingPage() {
                   )}
                 </motion.div>
                 <span
-                  className={`text-sm hidden sm:inline ${isActive ? "text-purple-300 font-medium" : "text-purple-500/50"}`}
+                  className={`text-sm hidden sm:inline ${isActive ? "text-green-300 font-medium" : "text-green-500/50"}`}
                 >
                   {s.label}
                 </span>
                 {i < STEPS.length - 1 && (
                   <div
-                    className={`w-8 h-0.5 mx-1 ${isComplete ? "bg-indigo-500" : "bg-purple-900/50"}`}
+                    className={`w-8 h-0.5 mx-1 ${isComplete ? "bg-lime-500" : "bg-green-900/50"}`}
                   />
                 )}
               </div>
@@ -378,9 +378,9 @@ export default function OnboardingPage() {
         {/* Progress bar */}
         <Progress
           value={progressValue}
-          className="h-1.5 bg-purple-900/30 [&>div]:bg-gradient-to-r [&>div]:from-purple-500 [&>div]:to-indigo-500"
+          className="h-1.5 bg-green-900/30 [&>div]:bg-gradient-to-r [&>div]:from-green-500 [&>div]:to-lime-500"
         />
-        <p className="text-center text-xs text-purple-400/60 mt-2">
+        <p className="text-center text-xs text-green-400/60 mt-2">
           Passo {step + 1} de 3
         </p>
       </motion.div>
@@ -398,12 +398,12 @@ export default function OnboardingPage() {
               exit="exit"
               transition={pageTransition}
             >
-              <Card className="bg-white/5 border-purple-500/10 backdrop-blur-xl shadow-2xl shadow-purple-900/20">
+              <Card className="bg-white/5 border-green-500/10 backdrop-blur-xl shadow-2xl shadow-green-900/20">
                 <CardHeader>
                   <CardTitle className="text-2xl text-white">
                     Dados Pessoais e Profissionais
                   </CardTitle>
-                  <CardDescription className="text-purple-300/60">
+                  <CardDescription className="text-green-300/60">
                     Conte-nos um pouco sobre voce e sua carreira atual.
                   </CardDescription>
                 </CardHeader>
@@ -411,13 +411,13 @@ export default function OnboardingPage() {
                   {/* Name & Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label className="text-purple-200">
+                      <Label className="text-green-200">
                         Nome <span className="text-red-400">*</span>
                       </Label>
                       <Input
                         {...register("name")}
                         placeholder="Seu nome completo"
-                        className="bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50"
+                        className="bg-white/5 border-green-500/20 text-white placeholder:text-green-400/30 focus-visible:ring-green-500/50"
                       />
                       {errors.name && (
                         <p className="text-red-400 text-xs">
@@ -426,14 +426,14 @@ export default function OnboardingPage() {
                       )}
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-purple-200">
+                      <Label className="text-green-200">
                         E-mail <span className="text-red-400">*</span>
                       </Label>
                       <Input
                         {...register("email")}
                         type="email"
                         placeholder="voce@email.com"
-                        className="bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50"
+                        className="bg-white/5 border-green-500/20 text-white placeholder:text-green-400/30 focus-visible:ring-green-500/50"
                       />
                       {errors.email && (
                         <p className="text-red-400 text-xs">
@@ -445,16 +445,16 @@ export default function OnboardingPage() {
 
                   {/* Password */}
                   <div className="space-y-2">
-                    <Label className="text-purple-200">
+                    <Label className="text-green-200">
                       Senha <span className="text-red-400">*</span>
                     </Label>
                     <div className="relative">
-                      <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-purple-400/40" />
+                      <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-green-400/40" />
                       <Input
                         {...register("password")}
                         type="password"
                         placeholder="Crie uma senha segura"
-                        className="pl-10 bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50"
+                        className="pl-10 bg-white/5 border-green-500/20 text-white placeholder:text-green-400/30 focus-visible:ring-green-500/50"
                       />
                     </div>
                     {errors.password && (
@@ -467,28 +467,28 @@ export default function OnboardingPage() {
                   {/* Role & Area */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label className="text-purple-200">Cargo atual</Label>
+                      <Label className="text-green-200">Cargo atual</Label>
                       <Input
                         {...register("job_role")}
                         placeholder="Ex: Desenvolvedor Pleno"
-                        className="bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50"
+                        className="bg-white/5 border-green-500/20 text-white placeholder:text-green-400/30 focus-visible:ring-green-500/50"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-purple-200">
+                      <Label className="text-green-200">
                         Area de atuacao
                       </Label>
                       <Input
                         {...register("area")}
                         placeholder="Ex: Tecnologia"
-                        className="bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50"
+                        className="bg-white/5 border-green-500/20 text-white placeholder:text-green-400/30 focus-visible:ring-green-500/50"
                       />
                     </div>
                   </div>
 
                   {/* Experience */}
                   <div className="space-y-2">
-                    <Label className="text-purple-200">
+                    <Label className="text-green-200">
                       Anos de experiencia
                     </Label>
                     <Input
@@ -497,18 +497,18 @@ export default function OnboardingPage() {
                       min={0}
                       max={50}
                       placeholder="Ex: 5"
-                      className="bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50 w-32"
+                      className="bg-white/5 border-green-500/20 text-white placeholder:text-green-400/30 focus-visible:ring-green-500/50 w-32"
                     />
                   </div>
 
                   {/* Education */}
                   <div className="space-y-3">
-                    <Label className="text-purple-200 text-base">
+                    <Label className="text-green-200 text-base">
                       Formacao
                     </Label>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <div className="space-y-2">
-                        <Label className="text-purple-300/70 text-xs">
+                        <Label className="text-green-300/70 text-xs">
                           Nivel
                         </Label>
                         <Controller
@@ -519,7 +519,7 @@ export default function OnboardingPage() {
                               onValueChange={field.onChange}
                               value={field.value}
                             >
-                              <SelectTrigger className="bg-white/5 border-purple-500/20 text-white focus:ring-purple-500/50 [&>span]:text-purple-300/60">
+                              <SelectTrigger className="bg-white/5 border-green-500/20 text-white focus:ring-green-500/50 [&>span]:text-green-300/60">
                                 <SelectValue placeholder="Selecione" />
                               </SelectTrigger>
                               <SelectContent>
@@ -534,23 +534,23 @@ export default function OnboardingPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-purple-300/70 text-xs">
+                        <Label className="text-green-300/70 text-xs">
                           Curso
                         </Label>
                         <Input
                           {...register("education_course")}
                           placeholder="Ex: Eng. de Software"
-                          className="bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50"
+                          className="bg-white/5 border-green-500/20 text-white placeholder:text-green-400/30 focus-visible:ring-green-500/50"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-purple-300/70 text-xs">
+                        <Label className="text-green-300/70 text-xs">
                           Instituicao
                         </Label>
                         <Input
                           {...register("education_institution")}
                           placeholder="Ex: USP"
-                          className="bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50"
+                          className="bg-white/5 border-green-500/20 text-white placeholder:text-green-400/30 focus-visible:ring-green-500/50"
                         />
                       </div>
                     </div>
@@ -558,7 +558,7 @@ export default function OnboardingPage() {
 
                   {/* Languages */}
                   <div className="space-y-2">
-                    <Label className="text-purple-200">Idiomas</Label>
+                    <Label className="text-green-200">Idiomas</Label>
                     <div className="flex flex-wrap gap-2">
                       {LANGUAGE_OPTIONS.map((lang) => {
                         const isSelected = languages.includes(lang);
@@ -569,8 +569,8 @@ export default function OnboardingPage() {
                             onClick={() => toggleLanguage(lang)}
                             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
                               isSelected
-                                ? "bg-purple-500/30 text-purple-200 border border-purple-400/40"
-                                : "bg-white/5 text-purple-400/50 border border-purple-500/10 hover:border-purple-500/30 hover:text-purple-300"
+                                ? "bg-green-500/30 text-green-200 border border-green-400/40"
+                                : "bg-white/5 text-green-400/50 border border-green-500/10 hover:border-green-500/30 hover:text-green-300"
                             }`}
                           >
                             {lang}
@@ -594,25 +594,25 @@ export default function OnboardingPage() {
               exit="exit"
               transition={pageTransition}
             >
-              <Card className="bg-white/5 border-purple-500/10 backdrop-blur-xl shadow-2xl shadow-purple-900/20">
+              <Card className="bg-white/5 border-green-500/10 backdrop-blur-xl shadow-2xl shadow-green-900/20">
                 <CardHeader>
                   <CardTitle className="text-2xl text-white">
                     Objetivo de Carreira
                   </CardTitle>
-                  <CardDescription className="text-purple-300/60">
+                  <CardDescription className="text-green-300/60">
                     Para onde voce quer ir? Vamos construir o caminho juntos.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-5">
                   {/* Target role */}
                   <div className="space-y-2">
-                    <Label className="text-purple-200">
+                    <Label className="text-green-200">
                       Cargo ou posicao desejada
                     </Label>
                     <Input
                       {...register("target_role")}
                       placeholder="Ex: Tech Lead, Product Manager"
-                      className="bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50"
+                      className="bg-white/5 border-green-500/20 text-white placeholder:text-green-400/30 focus-visible:ring-green-500/50"
                     />
                     {/* Suggestions */}
                     <div className="flex flex-wrap gap-1.5 mt-1">
@@ -621,7 +621,7 @@ export default function OnboardingPage() {
                           key={role}
                           type="button"
                           onClick={() => setValue("target_role", role)}
-                          className="px-2.5 py-1 rounded-md text-xs bg-white/5 text-purple-400/60 border border-purple-500/10 hover:border-purple-500/30 hover:text-purple-300 transition-colors"
+                          className="px-2.5 py-1 rounded-md text-xs bg-white/5 text-green-400/60 border border-green-500/10 hover:border-green-500/30 hover:text-green-300 transition-colors"
                         >
                           {role}
                         </button>
@@ -631,7 +631,7 @@ export default function OnboardingPage() {
 
                   {/* Timeline */}
                   <div className="space-y-2">
-                    <Label className="text-purple-200">
+                    <Label className="text-green-200">
                       Em quanto tempo?
                     </Label>
                     <Controller
@@ -648,8 +648,8 @@ export default function OnboardingPage() {
                                 onClick={() => field.onChange(opt.value)}
                                 className={`py-3 rounded-xl text-sm font-medium transition-all border ${
                                   isSelected
-                                    ? "bg-purple-500/20 border-purple-400/40 text-purple-200 shadow-lg shadow-purple-500/10"
-                                    : "bg-white/5 border-purple-500/10 text-purple-400/50 hover:border-purple-500/30"
+                                    ? "bg-green-500/20 border-green-400/40 text-green-200 shadow-lg shadow-green-500/10"
+                                    : "bg-white/5 border-green-500/10 text-green-400/50 hover:border-green-500/30"
                                 }`}
                               >
                                 {opt.label}
@@ -663,14 +663,14 @@ export default function OnboardingPage() {
 
                   {/* Motivation */}
                   <div className="space-y-2">
-                    <Label className="text-purple-200">
+                    <Label className="text-green-200">
                       Por que voce quer chegar la?
                     </Label>
                     <Textarea
                       {...register("motivation")}
                       placeholder="Compartilhe o que te motiva a buscar essa mudanca..."
                       rows={4}
-                      className="bg-white/5 border-purple-500/20 text-white placeholder:text-purple-400/30 focus-visible:ring-purple-500/50 resize-none"
+                      className="bg-white/5 border-green-500/20 text-white placeholder:text-green-400/30 focus-visible:ring-green-500/50 resize-none"
                     />
                   </div>
                 </CardContent>
@@ -688,12 +688,12 @@ export default function OnboardingPage() {
               exit="exit"
               transition={pageTransition}
             >
-              <Card className="bg-white/5 border-purple-500/10 backdrop-blur-xl shadow-2xl shadow-purple-900/20">
+              <Card className="bg-white/5 border-green-500/10 backdrop-blur-xl shadow-2xl shadow-green-900/20">
                 <CardHeader>
                   <CardTitle className="text-2xl text-white">
                     Upload de Curriculo
                   </CardTitle>
-                  <CardDescription className="text-purple-300/60">
+                  <CardDescription className="text-green-300/60">
                     Opcional. Envie seu CV para extrairmos automaticamente suas
                     habilidades e experiencias.
                   </CardDescription>
@@ -711,8 +711,8 @@ export default function OnboardingPage() {
                       onClick={() => fileInputRef.current?.click()}
                       className={`relative border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition-all ${
                         isDragging
-                          ? "border-purple-400 bg-purple-500/10"
-                          : "border-purple-500/20 hover:border-purple-500/40 hover:bg-white/5"
+                          ? "border-green-400 bg-green-500/10"
+                          : "border-green-500/20 hover:border-green-500/40 hover:bg-white/5"
                       }`}
                     >
                       <input
@@ -722,11 +722,11 @@ export default function OnboardingPage() {
                         onChange={onFileChange}
                         className="hidden"
                       />
-                      <Upload className="w-10 h-10 text-purple-400/40 mx-auto mb-3" />
-                      <p className="text-purple-200 font-medium">
+                      <Upload className="w-10 h-10 text-green-400/40 mx-auto mb-3" />
+                      <p className="text-green-200 font-medium">
                         Arraste seu CV aqui ou clique para selecionar
                       </p>
-                      <p className="text-purple-400/50 text-sm mt-1">
+                      <p className="text-green-400/50 text-sm mt-1">
                         PDF ou DOCX, ate 10MB
                       </p>
                     </div>
@@ -735,18 +735,18 @@ export default function OnboardingPage() {
                   {/* File selected */}
                   {cvFile && (
                     <div className="space-y-4">
-                      <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-purple-500/10">
-                        <FileUp className="w-8 h-8 text-purple-400" />
+                      <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-green-500/10">
+                        <FileUp className="w-8 h-8 text-green-400" />
                         <div className="flex-1 min-w-0">
-                          <p className="text-purple-200 font-medium truncate">
+                          <p className="text-green-200 font-medium truncate">
                             {cvFile.name}
                           </p>
-                          <p className="text-purple-400/50 text-xs">
+                          <p className="text-green-400/50 text-xs">
                             {(cvFile.size / 1024).toFixed(0)} KB
                           </p>
                         </div>
                         {cvProcessing ? (
-                          <Loader2 className="w-5 h-5 text-purple-400 animate-spin" />
+                          <Loader2 className="w-5 h-5 text-green-400 animate-spin" />
                         ) : (
                           <button
                             type="button"
@@ -755,7 +755,7 @@ export default function OnboardingPage() {
                               setCvExtracted(null);
                               setCvError(null);
                             }}
-                            className="text-purple-400/50 hover:text-red-400 transition-colors"
+                            className="text-green-400/50 hover:text-red-400 transition-colors"
                           >
                             <X className="w-5 h-5" />
                           </button>
@@ -767,14 +767,14 @@ export default function OnboardingPage() {
                         <motion.div
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          className="flex items-center gap-3 p-4 bg-indigo-500/10 rounded-xl border border-indigo-500/20"
+                          className="flex items-center gap-3 p-4 bg-lime-500/10 rounded-xl border border-lime-500/20"
                         >
-                          <Sparkles className="w-5 h-5 text-indigo-400 animate-pulse" />
+                          <Sparkles className="w-5 h-5 text-lime-400 animate-pulse" />
                           <div>
-                            <p className="text-indigo-200 text-sm font-medium">
+                            <p className="text-lime-200 text-sm font-medium">
                               Analisando seu curriculo com IA...
                             </p>
-                            <p className="text-indigo-400/50 text-xs">
+                            <p className="text-lime-400/50 text-xs">
                               Extraindo habilidades e experiencias
                             </p>
                           </div>
@@ -802,14 +802,14 @@ export default function OnboardingPage() {
 
                           {cvExtracted.hard_skills?.length > 0 && (
                             <div>
-                              <p className="text-purple-300/70 text-xs font-medium mb-1.5">
+                              <p className="text-green-300/70 text-xs font-medium mb-1.5">
                                 Hard Skills
                               </p>
                               <div className="flex flex-wrap gap-1.5">
                                 {cvExtracted.hard_skills.map((skill) => (
                                   <span
                                     key={skill}
-                                    className="px-2 py-0.5 bg-purple-500/15 text-purple-300 text-xs rounded-md border border-purple-500/20"
+                                    className="px-2 py-0.5 bg-green-500/15 text-green-300 text-xs rounded-md border border-green-500/20"
                                   >
                                     {skill}
                                   </span>
@@ -820,14 +820,14 @@ export default function OnboardingPage() {
 
                           {cvExtracted.soft_skills?.length > 0 && (
                             <div>
-                              <p className="text-purple-300/70 text-xs font-medium mb-1.5">
+                              <p className="text-green-300/70 text-xs font-medium mb-1.5">
                                 Soft Skills
                               </p>
                               <div className="flex flex-wrap gap-1.5">
                                 {cvExtracted.soft_skills.map((skill) => (
                                   <span
                                     key={skill}
-                                    className="px-2 py-0.5 bg-indigo-500/15 text-indigo-300 text-xs rounded-md border border-indigo-500/20"
+                                    className="px-2 py-0.5 bg-lime-500/15 text-lime-300 text-xs rounded-md border border-lime-500/20"
                                   >
                                     {skill}
                                   </span>
@@ -838,17 +838,17 @@ export default function OnboardingPage() {
 
                           {cvExtracted.experiences?.length > 0 && (
                             <div>
-                              <p className="text-purple-300/70 text-xs font-medium mb-1.5">
+                              <p className="text-green-300/70 text-xs font-medium mb-1.5">
                                 Experiencias
                               </p>
                               <div className="space-y-1">
                                 {cvExtracted.experiences.map((exp, i) => (
                                   <p
                                     key={i}
-                                    className="text-purple-200/80 text-xs"
+                                    className="text-green-200/80 text-xs"
                                   >
                                     {exp.role} - {exp.company}{" "}
-                                    <span className="text-purple-400/40">
+                                    <span className="text-green-400/40">
                                       ({exp.period})
                                     </span>
                                   </p>
@@ -859,17 +859,17 @@ export default function OnboardingPage() {
 
                           {cvExtracted.education?.length > 0 && (
                             <div>
-                              <p className="text-purple-300/70 text-xs font-medium mb-1.5">
+                              <p className="text-green-300/70 text-xs font-medium mb-1.5">
                                 Formacao
                               </p>
                               <div className="space-y-1">
                                 {cvExtracted.education.map((edu, i) => (
                                   <p
                                     key={i}
-                                    className="text-purple-200/80 text-xs"
+                                    className="text-green-200/80 text-xs"
                                   >
                                     {edu.degree} - {edu.institution}{" "}
-                                    <span className="text-purple-400/40">
+                                    <span className="text-green-400/40">
                                       ({edu.year})
                                     </span>
                                   </p>
@@ -899,7 +899,7 @@ export default function OnboardingPage() {
               type="button"
               variant="ghost"
               onClick={goBack}
-              className="text-purple-300 hover:text-white hover:bg-white/10"
+              className="text-green-300 hover:text-white hover:bg-white/10"
             >
               <ChevronLeft className="w-4 h-4 mr-1" />
               Voltar
@@ -912,7 +912,7 @@ export default function OnboardingPage() {
             <Button
               type="button"
               onClick={goNext}
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-500/25"
+              className="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 text-white shadow-lg shadow-green-500/25"
             >
               Proximo
               <ChevronRight className="w-4 h-4 ml-1" />
@@ -924,7 +924,7 @@ export default function OnboardingPage() {
                   type="submit"
                   variant="ghost"
                   disabled={isSubmitting}
-                  className="text-purple-300 hover:text-white hover:bg-white/10"
+                  className="text-green-300 hover:text-white hover:bg-white/10"
                 >
                   {isSubmitting ? (
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -935,7 +935,7 @@ export default function OnboardingPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting || cvProcessing}
-                className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-500/25"
+                className="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 text-white shadow-lg shadow-green-500/25"
               >
                 {isSubmitting ? (
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />

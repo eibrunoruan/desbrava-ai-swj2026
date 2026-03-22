@@ -198,7 +198,7 @@ function AssessmentRunner({ type }: { type: AssessmentType }) {
           <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-purple-400" />
+                <Sparkles className="h-5 w-5 text-green-400" />
                 Seus Resultados
               </CardTitle>
             </CardHeader>
@@ -219,7 +219,7 @@ function AssessmentRunner({ type }: { type: AssessmentType }) {
           </Button>
           <Button
             onClick={() => router.push("/profile")}
-            className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white"
+            className="bg-gradient-to-r from-green-600 to-lime-600 text-white"
           >
             Ver Meu Perfil
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -244,10 +244,10 @@ function AssessmentRunner({ type }: { type: AssessmentType }) {
         </Button>
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
-            <Icon className="h-5 w-5 text-purple-400" />
+            <Icon className="h-5 w-5 text-green-400" />
             <h1 className="text-xl font-bold">{meta.name}</h1>
             {meta.required && (
-              <Badge className="bg-violet-500/20 text-violet-300 border-violet-500/30 text-[10px]">
+              <Badge className="bg-lime-500/20 text-lime-300 border-lime-500/30 text-[10px]">
                 Obrigatorio
               </Badge>
             )}
@@ -314,7 +314,7 @@ function AssessmentRunner({ type }: { type: AssessmentType }) {
         <Button
           onClick={handleNext}
           disabled={!canGoNext || submitting}
-          className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-6"
+          className="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 text-white px-6"
         >
           {submitting ? (
             <>
@@ -358,7 +358,7 @@ function MBTIStep({
     <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-lg leading-relaxed">
-          <span className="text-purple-400 mr-2">Q{q.id}.</span>
+          <span className="text-green-400 mr-2">Q{q.id}.</span>
           {q.question}
         </CardTitle>
       </CardHeader>
@@ -372,7 +372,7 @@ function MBTIStep({
             onClick={() => onAnswer(String(q.id), opt.key)}
             className={`w-full text-left p-4 rounded-xl border transition-all duration-200 ${
               selected === opt.key
-                ? "border-purple-500 bg-purple-500/15 shadow-lg shadow-purple-500/10"
+                ? "border-green-500 bg-green-500/15 shadow-lg shadow-green-500/10"
                 : "border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10"
             }`}
           >
@@ -380,7 +380,7 @@ function MBTIStep({
               <div
                 className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-colors ${
                   selected === opt.key
-                    ? "border-purple-500 bg-purple-500 text-white"
+                    ? "border-green-500 bg-green-500 text-white"
                     : "border-white/30 text-muted-foreground"
                 }`}
               >
@@ -423,7 +423,7 @@ function BigFiveStep({
     <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-lg leading-relaxed">
-          <span className="text-indigo-400 mr-2">Q{q.id}.</span>
+          <span className="text-lime-400 mr-2">Q{q.id}.</span>
           {q.question}
         </CardTitle>
       </CardHeader>
@@ -438,7 +438,7 @@ function BigFiveStep({
                 onClick={() => onAnswer(String(q.id), value)}
                 className={`w-full text-left p-4 rounded-xl border transition-all duration-200 ${
                   isSelected
-                    ? "border-indigo-500 bg-indigo-500/15 shadow-lg shadow-indigo-500/10"
+                    ? "border-lime-500 bg-lime-500/15 shadow-lg shadow-lime-500/10"
                     : "border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10"
                 }`}
               >
@@ -446,7 +446,7 @@ function BigFiveStep({
                   <div
                     className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-colors ${
                       isSelected
-                        ? "border-indigo-500 bg-indigo-500 text-white"
+                        ? "border-lime-500 bg-lime-500 text-white"
                         : "border-white/30 text-muted-foreground"
                     }`}
                   >
@@ -562,7 +562,7 @@ function IkigaiStep({
     "from-pink-500 to-rose-600",
     "from-amber-500 to-orange-600",
     "from-emerald-500 to-teal-600",
-    "from-blue-500 to-indigo-600",
+    "from-blue-500 to-lime-600",
   ];
 
   return (
@@ -589,7 +589,7 @@ function IkigaiStep({
               <Badge
                 key={item}
                 variant="secondary"
-                className="bg-purple-500/20 text-purple-300 border-purple-500/30 px-3 py-1 cursor-pointer hover:bg-purple-500/30"
+                className="bg-green-500/20 text-green-300 border-green-500/30 px-3 py-1 cursor-pointer hover:bg-green-500/30"
                 onClick={() => removeItem(item)}
               >
                 {item}
@@ -621,7 +621,7 @@ function IkigaiStep({
                   }}
                   className={`cursor-pointer text-left text-sm p-3 rounded-lg border transition-all ${
                     isSelected
-                      ? "border-purple-500/50 bg-purple-500/10"
+                      ? "border-green-500/50 bg-green-500/10"
                       : "border-white/10 bg-white/5 hover:border-white/30"
                   }`}
                 >
@@ -717,7 +717,7 @@ function FlowActivitiesStep({
     <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
       <CardHeader>
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 text-white text-sm font-bold">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-lime-500 to-green-600 text-white text-sm font-bold">
             1
           </div>
           <Badge variant="outline" className="border-white/20 text-xs">
@@ -745,7 +745,7 @@ function FlowActivitiesStep({
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <Label className="text-xs text-muted-foreground">Desafio</Label>
-                    <span className="text-xs font-mono text-purple-400">
+                    <span className="text-xs font-mono text-green-400">
                       {current?.challenge ?? 5}
                     </span>
                   </div>
@@ -760,7 +760,7 @@ function FlowActivitiesStep({
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <Label className="text-xs text-muted-foreground">Habilidade</Label>
-                    <span className="text-xs font-mono text-indigo-400">
+                    <span className="text-xs font-mono text-lime-400">
                       {current?.skill ?? 5}
                     </span>
                   </div>
@@ -811,7 +811,7 @@ function FlowTriggersBlockersStep({
     <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
       <CardHeader>
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 text-white text-sm font-bold">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-lime-500 to-green-600 text-white text-sm font-bold">
             2
           </div>
           <Badge variant="outline" className="border-white/20 text-xs">
@@ -934,7 +934,7 @@ function FlowQuestionsStep({
     <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
       <CardHeader>
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 text-white text-sm font-bold">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-lime-500 to-green-600 text-white text-sm font-bold">
             3
           </div>
           <Badge variant="outline" className="border-white/20 text-xs">
@@ -954,7 +954,7 @@ function FlowQuestionsStep({
           return (
             <div key={q.id} className="space-y-3 p-4 rounded-xl border border-white/10 bg-white/5">
               <p className="text-sm font-medium">
-                <span className="text-violet-400 mr-1">{q.id}.</span>
+                <span className="text-lime-400 mr-1">{q.id}.</span>
                 {q.question}
               </p>
               <RadioGroup
@@ -967,7 +967,7 @@ function FlowQuestionsStep({
                     key={idx}
                     className={`flex items-center gap-2 text-sm p-2.5 rounded-lg border cursor-pointer transition-all ${
                       String(selected) === opt
-                        ? "border-violet-500/50 bg-violet-500/10"
+                        ? "border-lime-500/50 bg-lime-500/10"
                         : "border-white/10 hover:border-white/30"
                     }`}
                   >
@@ -993,7 +993,7 @@ function ResultsPreview({ type, results }: { type: AssessmentType; results: Reco
     return (
       <div className="space-y-4">
         <div className="text-center">
-          <span className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+          <span className="text-4xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
             {r.type}
           </span>
           <p className="text-sm text-muted-foreground mt-2">{r.description}</p>
@@ -1007,16 +1007,16 @@ function ResultsPreview({ type, results }: { type: AssessmentType; results: Reco
             return (
               <div key={pair} className="space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className={leftVal >= rightVal ? "text-purple-400 font-semibold" : "text-muted-foreground"}>
+                  <span className={leftVal >= rightVal ? "text-green-400 font-semibold" : "text-muted-foreground"}>
                     {left} ({leftVal}%)
                   </span>
-                  <span className={rightVal > leftVal ? "text-indigo-400 font-semibold" : "text-muted-foreground"}>
+                  <span className={rightVal > leftVal ? "text-lime-400 font-semibold" : "text-muted-foreground"}>
                     {right} ({rightVal}%)
                   </span>
                 </div>
                 <div className="h-2 rounded-full bg-white/10 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full transition-all"
+                    className="h-full bg-gradient-to-r from-green-500 to-lime-500 rounded-full transition-all"
                     style={{ width: `${leftVal}%` }}
                   />
                 </div>
@@ -1034,8 +1034,8 @@ function ResultsPreview({ type, results }: { type: AssessmentType; results: Reco
       { key: "openness", label: "Abertura", color: "from-pink-500 to-rose-500" },
       { key: "conscientiousness", label: "Conscienciosidade", color: "from-amber-500 to-orange-500" },
       { key: "extraversion", label: "Extroversao", color: "from-emerald-500 to-teal-500" },
-      { key: "agreeableness", label: "Amabilidade", color: "from-blue-500 to-indigo-500" },
-      { key: "neuroticism", label: "Neuroticismo", color: "from-violet-500 to-purple-500" },
+      { key: "agreeableness", label: "Amabilidade", color: "from-blue-500 to-lime-500" },
+      { key: "neuroticism", label: "Neuroticismo", color: "from-lime-500 to-green-500" },
     ];
     return (
       <div className="space-y-3">
@@ -1121,7 +1121,7 @@ function ResultsPreview({ type, results }: { type: AssessmentType; results: Reco
     return (
       <div className="space-y-4">
         <div className="text-center">
-          <span className="text-4xl font-bold bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">
+          <span className="text-4xl font-bold bg-gradient-to-r from-lime-400 to-green-400 bg-clip-text text-transparent">
             {r.flowScore}%
           </span>
           <p className="text-xs text-muted-foreground mt-1">Flow Score</p>

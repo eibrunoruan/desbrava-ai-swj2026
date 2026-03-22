@@ -86,7 +86,7 @@ export default function AssessmentsPage() {
         </div>
         <h1 className="text-3xl font-bold">
           Assessments de{" "}
-          <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
             Autoconhecimento
           </span>
         </h1>
@@ -101,7 +101,7 @@ export default function AssessmentsPage() {
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-lime-600">
                 <CheckCircle2 className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -111,7 +111,7 @@ export default function AssessmentsPage() {
                 </p>
               </div>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
               {progressPercent}%
             </span>
           </div>
@@ -122,7 +122,7 @@ export default function AssessmentsPage() {
       {/* Assessment cards */}
       {loading ? (
         <div className="flex items-center justify-center py-20">
-          <Loader2 className="h-8 w-8 animate-spin text-purple-400" />
+          <Loader2 className="h-8 w-8 animate-spin text-green-400" />
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -135,14 +135,14 @@ export default function AssessmentsPage() {
             return (
               <Card
                 key={meta.type}
-                className={`group relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5 ${
+                className={`group relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/5 ${
                   isCompleted ? "opacity-80" : ""
                 }`}
               >
                 {/* Required badge */}
                 {meta.required && (
                   <div className="absolute top-3 right-3">
-                    <Badge className="bg-violet-500/20 text-violet-300 border-violet-500/30 text-[10px] font-bold uppercase tracking-wider">
+                    <Badge className="bg-lime-500/20 text-lime-300 border-lime-500/30 text-[10px] font-bold uppercase tracking-wider">
                       Obrigatorio
                     </Badge>
                   </div>
@@ -189,7 +189,7 @@ export default function AssessmentsPage() {
                         isCompleted
                           ? "bg-white/10 hover:bg-white/20 text-foreground"
                           : meta.required
-                            ? "bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white shadow-lg shadow-purple-500/25"
+                            ? "bg-gradient-to-r from-lime-600 to-green-600 hover:from-lime-500 hover:to-green-500 text-white shadow-lg shadow-green-500/25"
                             : "bg-white/10 hover:bg-white/20 text-foreground"
                       }`}
                       variant={isCompleted ? "outline" : "default"}

@@ -18,6 +18,7 @@ export interface AppUser {
   cv_url: string | null;
   cv_extracted_data: unknown;
   onboarding_completed: boolean;
+  plan: string;
   created_at: string;
   updated_at: string;
 }

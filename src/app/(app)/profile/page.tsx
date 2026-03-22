@@ -200,7 +200,7 @@ const insightColors: Record<string, string> = {
   strength: "text-emerald-400 bg-emerald-500/20 border-emerald-500/30",
   opportunity: "text-blue-400 bg-blue-500/20 border-blue-500/30",
   attention: "text-amber-400 bg-amber-500/20 border-amber-500/30",
-  synergy: "text-purple-400 bg-purple-500/20 border-purple-500/30",
+  synergy: "text-green-400 bg-green-500/20 border-green-500/30",
 };
 
 const priorityColors: Record<string, string> = {
@@ -419,12 +419,12 @@ export default function ProfilePage() {
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-2xl font-bold text-white shadow-lg shadow-purple-500/25">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-lime-600 text-2xl font-bold text-white shadow-lg shadow-green-500/25">
               {userData?.name?.charAt(0)?.toUpperCase() ?? "?"}
             </div>
             <div>
               <h1 className="text-2xl font-bold sm:text-3xl">
-                <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
                   {userData?.name ?? "Carregando..."}
                 </span>
               </h1>
@@ -435,7 +435,7 @@ export default function ProfilePage() {
                   </Badge>
                 )}
                 {userData?.target_role && (
-                  <Badge variant="outline" className="gap-1 border-purple-500/30 text-purple-400">
+                  <Badge variant="outline" className="gap-1 border-green-500/30 text-green-400">
                     <Target className="h-3 w-3" /> Alvo: {userData.target_role}
                   </Badge>
                 )}
@@ -451,7 +451,7 @@ export default function ProfilePage() {
           <Button
             onClick={handleGenerate}
             disabled={generating}
-            className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-lg shadow-purple-500/25"
+            className="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-700 hover:to-lime-700 shadow-lg shadow-green-500/25"
           >
             {generating ? (
               <>
@@ -490,8 +490,8 @@ export default function ProfilePage() {
         <motion.div {...fadeUp}>
           <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
             <CardContent className="flex flex-col items-center justify-center p-12 text-center">
-              <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/20">
-                <Brain className="h-10 w-10 text-purple-400" />
+              <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-green-500/20 to-lime-500/20">
+                <Brain className="h-10 w-10 text-green-400" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Perfil ainda não gerado</h3>
               <p className="text-muted-foreground max-w-md mb-2">
@@ -499,7 +499,7 @@ export default function ProfilePage() {
                 análise consolidada com inteligência artificial.
               </p>
               <p className="text-sm text-muted-foreground">
-                <span className="font-medium text-purple-400">{completedCount}/5</span> assessments completados
+                <span className="font-medium text-green-400">{completedCount}/5</span> assessments completados
               </p>
             </CardContent>
           </Card>
@@ -536,7 +536,7 @@ export default function ProfilePage() {
                   <div key={item.name} className="space-y-1.5">
                     <div className="flex items-center justify-between text-sm">
                       <span>{item.name}</span>
-                      <span className="font-medium text-purple-400">{item.value}%</span>
+                      <span className="font-medium text-green-400">{item.value}%</span>
                     </div>
                     <Progress value={item.value} className="h-2" />
                   </div>
@@ -550,7 +550,7 @@ export default function ProfilePage() {
           {/* Personality Map */}
           <motion.div {...fadeUp}>
             <div className="flex items-center gap-2 mb-4">
-              <User className="h-5 w-5 text-purple-400" />
+              <User className="h-5 w-5 text-green-400" />
               <h2 className="text-xl font-bold">Mapa de Personalidade</h2>
             </div>
 
@@ -580,7 +580,7 @@ export default function ProfilePage() {
                 <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
                   <CardHeader>
                     <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 text-lg font-bold">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-lime-600 text-lg font-bold">
                         {pm?.mbti_type ?? "?"}
                       </div>
                       <div>
@@ -603,16 +603,16 @@ export default function ProfilePage() {
                         ).map(([a, b, labelA, labelB]) => (
                           <div key={a} className="space-y-1">
                             <div className="flex justify-between text-xs">
-                              <span className={pm.mbti_dimensions[a] >= 50 ? "font-bold text-purple-400" : "text-muted-foreground"}>
+                              <span className={pm.mbti_dimensions[a] >= 50 ? "font-bold text-green-400" : "text-muted-foreground"}>
                                 {a} - {labelA}
                               </span>
-                              <span className={pm.mbti_dimensions[b] >= 50 ? "font-bold text-indigo-400" : "text-muted-foreground"}>
+                              <span className={pm.mbti_dimensions[b] >= 50 ? "font-bold text-lime-400" : "text-muted-foreground"}>
                                 {b} - {labelB}
                               </span>
                             </div>
                             <div className="relative h-2 w-full overflow-hidden rounded-full bg-white/10">
                               <div
-                                className="absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-500"
+                                className="absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-green-500 to-lime-500"
                                 style={{ width: `${pm.mbti_dimensions[a]}%` }}
                               />
                             </div>
@@ -722,7 +722,7 @@ export default function ProfilePage() {
 
             <div className="grid gap-6 md:grid-cols-2">
               {/* Purpose Statement */}
-              <Card className="border-white/10 bg-gradient-to-br from-pink-500/10 to-purple-500/10 backdrop-blur-sm md:col-span-2">
+              <Card className="border-white/10 bg-gradient-to-br from-pink-500/10 to-green-500/10 backdrop-blur-sm md:col-span-2">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-3">
                     <Flame className="h-6 w-6 text-pink-400 shrink-0 mt-0.5" />
@@ -764,7 +764,7 @@ export default function ProfilePage() {
                     </div>
                     {quadrant.zone && (
                       <div className="rounded-lg bg-white/5 p-3 border border-white/10">
-                        <p className="text-xs font-medium text-purple-400 mb-1">{quadrant.zoneLabel}</p>
+                        <p className="text-xs font-medium text-green-400 mb-1">{quadrant.zoneLabel}</p>
                         <p className="text-xs text-muted-foreground">{quadrant.zone}</p>
                       </div>
                     )}
@@ -776,7 +776,7 @@ export default function ProfilePage() {
               <Card className="border-white/10 bg-white/5 backdrop-blur-sm md:col-span-2">
                 <CardHeader>
                   <CardTitle className="text-base flex items-center gap-2">
-                    <Target className="h-4 w-4 text-indigo-400" />
+                    <Target className="h-4 w-4 text-lime-400" />
                     Alinhamento com Cargo Alvo
                   </CardTitle>
                 </CardHeader>
@@ -901,7 +901,7 @@ export default function ProfilePage() {
                     <div className="grid gap-2 sm:grid-cols-2">
                       {flowZone.recommendations.map((rec, i) => (
                         <div key={i} className="flex items-start gap-2 rounded-lg bg-white/5 p-3 border border-white/10 text-sm">
-                          <span className="font-bold text-purple-400 shrink-0">{i + 1}.</span>
+                          <span className="font-bold text-green-400 shrink-0">{i + 1}.</span>
                           <span className="text-muted-foreground">{rec}</span>
                         </div>
                       ))}
@@ -927,8 +927,8 @@ export default function ProfilePage() {
                   <CardContent className="p-4">
                     <div className="flex items-center gap-4 text-sm">
                       <Badge variant="secondary">{gapAnalysis.job_role}</Badge>
-                      <ArrowUpRight className="h-4 w-4 text-purple-400" />
-                      <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">
+                      <ArrowUpRight className="h-4 w-4 text-green-400" />
+                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
                         {gapAnalysis.target_role}
                       </Badge>
                     </div>
@@ -1012,7 +1012,7 @@ export default function ProfilePage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
                   >
-                    <Card className="border-white/10 bg-white/5 backdrop-blur-sm h-full hover:border-purple-500/30 transition-colors">
+                    <Card className="border-white/10 bg-white/5 backdrop-blur-sm h-full hover:border-green-500/30 transition-colors">
                       <CardContent className="p-4 space-y-3">
                         <div className="flex items-start gap-3">
                           <div className={`flex h-8 w-8 items-center justify-center rounded-lg border shrink-0 ${colorClass}`}>

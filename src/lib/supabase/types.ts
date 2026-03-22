@@ -29,6 +29,7 @@ export type Database = {
           cv_url: string | null;
           cv_extracted_data: Json | null;
           onboarding_completed: boolean;
+          plan: string;
           created_at: string;
           updated_at: string;
         };
@@ -51,6 +52,7 @@ export type Database = {
           cv_url?: string | null;
           cv_extracted_data?: Json | null;
           onboarding_completed?: boolean;
+          plan?: string;
           created_at?: string;
           updated_at?: string;
         };
@@ -73,6 +75,7 @@ export type Database = {
           cv_url?: string | null;
           cv_extracted_data?: Json | null;
           onboarding_completed?: boolean;
+          plan?: string;
           created_at?: string;
           updated_at?: string;
         };

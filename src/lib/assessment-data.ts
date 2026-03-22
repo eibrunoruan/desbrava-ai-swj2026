@@ -517,7 +517,7 @@ export const assessmentsMeta: AssessmentMeta[] = [
     estimatedMinutes: 12,
     questionCount: 15,
     required: true,
-    gradient: "from-violet-500 to-purple-600",
+    gradient: "from-lime-500 to-green-600",
   },
   {
     type: "mbti",
@@ -526,7 +526,7 @@ export const assessmentsMeta: AssessmentMeta[] = [
     estimatedMinutes: 8,
     questionCount: 20,
     required: false,
-    gradient: "from-purple-500 to-indigo-600",
+    gradient: "from-green-500 to-lime-600",
   },
   {
     type: "big_five",
@@ -535,7 +535,7 @@ export const assessmentsMeta: AssessmentMeta[] = [
     estimatedMinutes: 10,
     questionCount: 30,
     required: false,
-    gradient: "from-indigo-500 to-blue-600",
+    gradient: "from-lime-500 to-blue-600",
   },
   {
     type: "disc",

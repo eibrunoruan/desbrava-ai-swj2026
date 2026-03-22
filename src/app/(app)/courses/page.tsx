@@ -29,6 +29,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useUserStore } from "@/store/user";
+import { PremiumGate } from "@/components/premium-gate";
 
 interface Course {
   id?: string;
@@ -103,6 +104,21 @@ function renderStars(rating: number) {
 }
 
 export default function CoursesPage() {
+  const user = useUserStore((s) => s.user);
+
+  if (!user?.plan || user.plan === "free") {
+    return (
+      <PremiumGate
+        feature="Curadoria de Cursos Inteligente"
+        description="Com o plano Premium, voce recebe recomendacoes personalizadas de cursos baseadas no seu perfil, PDI e objetivos. Encontre os melhores cursos para acelerar sua carreira."
+      />
+    );
+  }
+
+  return <CoursesContent />;
+}
+
+function CoursesContent() {
   const user = useUserStore((s) => s.user);
   const [searchQuery, setSearchQuery] = useState("");
   const [courses, setCourses] = useState<Course[]>([]);
@@ -225,7 +241,7 @@ export default function CoursesPage() {
           </span>
         </div>
         <h1 className="text-3xl font-bold">
-          <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
             Cursos Recomendados
           </span>
         </h1>
@@ -252,7 +268,7 @@ export default function CoursesPage() {
             <Button
               onClick={handleSearch}
               disabled={loading || !searchQuery.trim()}
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+              className="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-700 hover:to-lime-700"
             >
               {loading ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -307,7 +323,7 @@ export default function CoursesPage() {
       {pdiItems.length > 0 && (
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-purple-400" />
+            <Sparkles className="h-5 w-5 text-green-400" />
             <h2 className="text-xl font-semibold">
               Cursos Recomendados para seu PDI
             </h2>
@@ -372,8 +388,8 @@ export default function CoursesPage() {
       {!hasSearched && pdiItems.length === 0 && !pdiLoading && (
         <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/20">
-              <BookOpen className="h-8 w-8 text-purple-400" />
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-500/20 to-lime-500/20">
+              <BookOpen className="h-8 w-8 text-green-400" />
             </div>
             <h3 className="mb-2 text-lg font-semibold">
               Descubra os melhores cursos para voce
@@ -389,7 +405,7 @@ export default function CoursesPage() {
                 handleSearch();
               }}
               variant="outline"
-              className="border-purple-500/30 hover:bg-purple-500/10"
+              className="border-green-500/30 hover:bg-green-500/10"
             >
               <Sparkles className="mr-2 h-4 w-4" />
               Experimentar uma busca
@@ -403,7 +419,7 @@ export default function CoursesPage() {
 
 function CourseCard({ course }: { course: Course }) {
   return (
-    <Card className="group relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5">
+    <Card className="group relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/5">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <CardTitle className="text-sm font-semibold leading-tight line-clamp-2">
@@ -418,7 +434,7 @@ function CourseCard({ course }: { course: Course }) {
         </div>
         <Badge
           variant="secondary"
-          className="w-fit bg-indigo-500/20 text-indigo-300 text-xs"
+          className="w-fit bg-lime-500/20 text-lime-300 text-xs"
         >
           {course.platform}
         </Badge>
@@ -451,7 +467,7 @@ function CourseCard({ course }: { course: Course }) {
         </div>
 
         {/* Price */}
-        <div className="text-lg font-bold text-purple-400">
+        <div className="text-lg font-bold text-green-400">
           {course.price === 0
             ? "Gratuito"
             : `R$ ${course.price.toFixed(2)}`}
@@ -465,7 +481,7 @@ function CourseCard({ course }: { course: Course }) {
           className="block"
         >
           <Button
-            className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+            className="w-full bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-700 hover:to-lime-700"
             size="sm"
           >
             <ExternalLink className="mr-2 h-3.5 w-3.5" />

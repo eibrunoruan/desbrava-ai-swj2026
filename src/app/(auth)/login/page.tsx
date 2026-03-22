@@ -60,7 +60,7 @@ export default function LoginPage() {
   };
 
   return (
-    <Card className="border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl shadow-purple-500/5">
+    <Card className="border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl shadow-green-500/5">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">Bem-vindo(a) de volta</CardTitle>
         <CardDescription>
@@ -80,7 +80,7 @@ export default function LoginPage() {
                 placeholder="seu@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-10 border-white/10 bg-white/5 focus:border-purple-500/50"
+                className="pl-10 border-white/10 bg-white/5 focus:border-green-500/50"
                 disabled={loading}
               />
             </div>
@@ -96,7 +96,7 @@ export default function LoginPage() {
                 placeholder="Sua senha"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-10 border-white/10 bg-white/5 focus:border-purple-500/50"
+                className="pl-10 border-white/10 bg-white/5 focus:border-green-500/50"
                 disabled={loading}
               />
             </div>
@@ -106,7 +106,7 @@ export default function LoginPage() {
         <CardFooter className="flex flex-col gap-4">
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-lg shadow-purple-500/20"
+            className="w-full bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-700 hover:to-lime-700 shadow-lg shadow-green-500/20"
             disabled={loading}
           >
             {loading ? (
@@ -121,7 +121,7 @@ export default function LoginPage() {
             Ainda não tem conta?{" "}
             <Link
               href="/onboarding"
-              className="font-medium text-purple-400 hover:text-purple-300 transition-colors"
+              className="font-medium text-green-400 hover:text-green-300 transition-colors"
             >
               Comece sua jornada
             </Link>

@@ -43,6 +43,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useUserStore } from "@/store/user";
+import { PremiumGate } from "@/components/premium-gate";
 
 // ─── Types ──────────────────────────────────────────────────────────
 interface CourseRecommendation {
@@ -119,7 +120,7 @@ const moduleConfig: Record<
   specialization: {
     label: "Especializacao",
     icon: Target,
-    gradient: "from-purple-500 to-violet-500",
+    gradient: "from-green-500 to-lime-500",
     description: "Mergulhe fundo em areas estrategicas",
   },
   consolidation: {
@@ -147,7 +148,7 @@ const typeConfig: Record<
   reading: {
     label: "Leitura",
     icon: BookMarked,
-    className: "bg-violet-500/20 text-violet-400 border-violet-500/30",
+    className: "bg-lime-500/20 text-lime-400 border-lime-500/30",
   },
   exercise: {
     label: "Exercicio",
@@ -311,11 +312,21 @@ export default function PdiPage() {
     return Math.round((completed / activePdi.items.length) * 100);
   };
 
+  // ─── Premium gate ──────────────────────────────────────────────
+  if (!user?.plan || user.plan === "free") {
+    return (
+      <PremiumGate
+        feature="Desbloqueie seu PDI personalizado com IA"
+        description="Com o plano Premium, voce recebe um Plano de Desenvolvimento Individual completo, gerado por inteligencia artificial com base no seu perfil, assessments e objetivos de carreira."
+      />
+    );
+  }
+
   // ─── Loading state ──────────────────────────────────────────────
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-400" />
+        <Loader2 className="h-8 w-8 animate-spin text-green-400" />
       </div>
     );
   }
@@ -332,7 +343,7 @@ export default function PdiPage() {
           </div>
           <h1 className="text-3xl font-bold">
             Plano de{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
               Desenvolvimento Individual
             </span>
           </h1>
@@ -351,10 +362,10 @@ export default function PdiPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Card className="group relative h-full overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/10">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-indigo-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
+            <Card className="group relative h-full overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-lime-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
               <CardHeader className="relative">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 shadow-lg shadow-purple-500/25 mb-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-green-500 to-lime-600 shadow-lg shadow-green-500/25 mb-4">
                   <Sparkles className="h-7 w-7 text-white" />
                 </div>
                 <CardTitle className="text-xl">Gerar PDI com IA</CardTitle>
@@ -371,7 +382,7 @@ export default function PdiPage() {
                     <span>Fundamentos - preencha sua base</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Target className="h-4 w-4 text-purple-400" />
+                    <Target className="h-4 w-4 text-green-400" />
                     <span>Especializacao - mergulho profundo</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -383,7 +394,7 @@ export default function PdiPage() {
                 <Button
                   onClick={handleGenerate}
                   disabled={generating || importing}
-                  className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-500/25"
+                  className="w-full bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 text-white shadow-lg shadow-green-500/25"
                   size="lg"
                 >
                   {generating ? (
@@ -409,10 +420,10 @@ export default function PdiPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Card className="group relative h-full overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-violet-500/30 hover:shadow-lg hover:shadow-violet-500/10">
-              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-purple-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
+            <Card className="group relative h-full overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-lime-500/30 hover:shadow-lg hover:shadow-lime-500/10">
+              <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 via-transparent to-green-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
               <CardHeader className="relative">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg shadow-violet-500/25 mb-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-lime-500 to-green-600 shadow-lg shadow-lime-500/25 mb-4">
                   <Upload className="h-7 w-7 text-white" />
                 </div>
                 <CardTitle className="text-xl">Importar PDI Existente</CardTitle>
@@ -425,7 +436,7 @@ export default function PdiPage() {
               <CardContent className="relative space-y-4">
                 <div className="space-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
-                    <FileUp className="h-4 w-4 text-violet-400" />
+                    <FileUp className="h-4 w-4 text-lime-400" />
                     <span>Formatos aceitos: PDF, DOCX</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -496,7 +507,7 @@ export default function PdiPage() {
         </div>
         <h1 className="text-3xl font-bold">
           Meu{" "}
-          <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
             Plano de Desenvolvimento
           </span>
         </h1>
@@ -516,7 +527,7 @@ export default function PdiPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-lime-600 shadow-lg">
                   <CheckCircle2 className="h-6 w-6 text-white" />
                 </div>
                 <div>
@@ -526,7 +537,7 @@ export default function PdiPage() {
                   </p>
                 </div>
               </div>
-              <span className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+              <span className="text-3xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
                 {overallProgress}%
               </span>
             </div>
@@ -550,7 +561,7 @@ export default function PdiPage() {
                     onClick={() => setActiveTab(mod)}
                     className={`rounded-lg p-3 text-left transition-all ${
                       activeTab === mod
-                        ? "bg-white/10 ring-1 ring-purple-500/30"
+                        ? "bg-white/10 ring-1 ring-green-500/30"
                         : "bg-white/5 hover:bg-white/10"
                     }`}
                   >
@@ -627,7 +638,7 @@ export default function PdiPage() {
                     <AccordionItem value="enrichments" className="border-white/10">
                       <AccordionTrigger className="text-sm font-medium py-2">
                         <span className="flex items-center gap-2">
-                          <Sparkles className="h-4 w-4 text-purple-400" />
+                          <Sparkles className="h-4 w-4 text-green-400" />
                           Sugestoes de Enriquecimento (
                           {activePdi.ai_suggestions.enrichment_suggestions.length})
                         </span>
@@ -644,7 +655,7 @@ export default function PdiPage() {
                                 <p className="text-xs text-muted-foreground">
                                   {sug.description}
                                 </p>
-                                <p className="text-xs text-purple-400">
+                                <p className="text-xs text-green-400">
                                   Motivo: {sug.reason}
                                 </p>
                               </div>
@@ -674,7 +685,7 @@ export default function PdiPage() {
                   {activePdi.ai_suggestions.personality_fit_notes && (
                     <div className="rounded-lg bg-white/5 p-3">
                       <p className="text-xs font-medium flex items-center gap-1.5 mb-1">
-                        <Zap className="h-3.5 w-3.5 text-violet-400" />
+                        <Zap className="h-3.5 w-3.5 text-lime-400" />
                         Fit de Personalidade
                       </p>
                       <p className="text-xs text-muted-foreground">
@@ -816,7 +827,7 @@ function PdiItemCard({
             {/* Checkbox */}
             <div className="pt-0.5">
               {isUpdating ? (
-                <Loader2 className="h-5 w-5 animate-spin text-purple-400" />
+                <Loader2 className="h-5 w-5 animate-spin text-green-400" />
               ) : (
                 <Checkbox
                   checked={isCompleted}
@@ -894,8 +905,8 @@ function PdiItemCard({
 
               {/* Flow strategy tip */}
               {item.flow_strategy && (
-                <div className="rounded-lg bg-purple-500/10 border border-purple-500/20 p-3 mt-2">
-                  <p className="text-xs font-medium text-purple-300 flex items-center gap-1.5 mb-1">
+                <div className="rounded-lg bg-green-500/10 border border-green-500/20 p-3 mt-2">
+                  <p className="text-xs font-medium text-green-300 flex items-center gap-1.5 mb-1">
                     <Sparkles className="h-3.5 w-3.5" />
                     Estrategia de Flow
                   </p>

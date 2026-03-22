@@ -10,6 +10,7 @@ import {
   Route,
   BookOpen,
   CalendarCheck,
+  CreditCard,
   Sparkles,
   Menu,
   X,
@@ -27,6 +28,7 @@ const navItems = [
   { href: "/pdi", icon: Route, label: "Meu PDI" },
   { href: "/courses", icon: BookOpen, label: "Cursos" },
   { href: "/checkin", icon: CalendarCheck, label: "Check-in" },
+  { href: "/pricing", icon: CreditCard, label: "Planos" },
 ];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -54,7 +56,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return (
       <div className="flex h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-8 w-8 animate-spin text-purple-400" />
+          <Loader2 className="h-8 w-8 animate-spin text-green-400" />
           <p className="text-sm text-muted-foreground">Carregando...</p>
         </div>
       </div>
@@ -84,7 +86,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-6">
           <Link href="/dashboard" className="flex items-center gap-2">
             <Sparkles className="h-6 w-6 text-sidebar-primary" />
-            <span className="text-lg font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="text-lg font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
               Desbrava.Ai
             </span>
           </Link>
@@ -159,7 +161,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </Button>
           <div className="ml-3 flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary" />
-            <span className="font-semibold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="font-semibold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
               Desbrava.Ai
             </span>
           </div>

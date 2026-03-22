@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useUserStore } from "@/store/user";
+import { PremiumGate } from "@/components/premium-gate";
 
 interface CheckIn {
   id: string;
@@ -72,6 +73,21 @@ function feelingDisplay(value: string | null) {
 }
 
 export default function CheckinPage() {
+  const user = useUserStore((s) => s.user);
+
+  if (!user?.plan || user.plan === "free") {
+    return (
+      <PremiumGate
+        feature="Acompanhamento e Check-ins"
+        description="Com o plano Premium, voce pode registrar check-ins periodicos, acompanhar sua evolucao emocional e receber insights sobre seu progresso no plano de desenvolvimento."
+      />
+    );
+  }
+
+  return <CheckinContent />;
+}
+
+function CheckinContent() {
   const user = useUserStore((s) => s.user);
   const [feeling, setFeeling] = useState("");
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
@@ -180,7 +196,7 @@ export default function CheckinPage() {
           <span className="text-sm text-muted-foreground">Check-in</span>
         </div>
         <h1 className="text-3xl font-bold">
-          <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
             Check-in de Progresso
           </span>
         </h1>
@@ -237,7 +253,7 @@ export default function CheckinPage() {
                         key={option.value}
                         className={`flex cursor-pointer items-center gap-3 rounded-lg border p-3 transition-all ${
                           feeling === option.value
-                            ? "border-purple-500/50 bg-purple-500/10"
+                            ? "border-green-500/50 bg-green-500/10"
                             : "border-white/10 hover:border-white/20 hover:bg-white/5"
                         }`}
                       >
@@ -271,7 +287,7 @@ export default function CheckinPage() {
                       variant="outline"
                       className={`cursor-pointer px-3 py-1.5 text-sm transition-all ${
                         selectedActivities.includes(activity)
-                          ? "border-purple-500/50 bg-purple-500/20 text-purple-300"
+                          ? "border-green-500/50 bg-green-500/20 text-green-300"
                           : "border-white/10 hover:border-white/20 hover:bg-white/5"
                       }`}
                       onClick={() => toggleActivity(activity)}
@@ -344,7 +360,7 @@ export default function CheckinPage() {
             <Button
               onClick={handleSubmit}
               disabled={loading || !feeling || submitted}
-              className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+              className="w-full bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-700 hover:to-lime-700"
               size="lg"
             >
               {loading ? (
@@ -433,7 +449,7 @@ export default function CheckinPage() {
                                   <Badge
                                     key={act}
                                     variant="secondary"
-                                    className="bg-purple-500/20 text-purple-300 text-xs"
+                                    className="bg-green-500/20 text-green-300 text-xs"
                                   >
                                     {act}
                                   </Badge>

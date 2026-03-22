@@ -82,7 +82,7 @@ const features = [
     title: "Assessments de Autoconhecimento",
     description:
       "Descubra suas fortalezas, valores e estilo de trabalho com assessments baseados em ciência comportamental e IA.",
-    gradient: "from-purple-500 to-indigo-500",
+    gradient: "from-green-500 to-lime-500",
     accent: "purple",
   },
   {
@@ -90,7 +90,7 @@ const features = [
     title: "PDI Personalizado com IA",
     description:
       "Receba um Plano de Desenvolvimento Individual criado sob medida para seus objetivos e realidade profissional.",
-    gradient: "from-indigo-500 to-blue-500",
+    gradient: "from-lime-500 to-blue-500",
     accent: "indigo",
   },
   {
@@ -98,7 +98,7 @@ const features = [
     title: "Curadoria Inteligente de Cursos",
     description:
       "Acesse recomendações de cursos, livros e conteúdos selecionados por IA para acelerar seu crescimento.",
-    gradient: "from-violet-500 to-purple-500",
+    gradient: "from-lime-500 to-green-500",
     accent: "violet",
   },
   {
@@ -106,7 +106,7 @@ const features = [
     title: "Acompanhamento e Evolução",
     description:
       "Monitore seu progresso com check-ins regulares e ajuste seu plano dinamicamente conforme evolui.",
-    gradient: "from-fuchsia-500 to-violet-500",
+    gradient: "from-fuchsia-500 to-lime-500",
     accent: "fuchsia",
   },
 ];
@@ -145,7 +145,7 @@ const assessments = [
     name: "MBTI",
     description: "Descubra seu tipo de personalidade entre 16 perfis únicos baseados em preferências cognitivas.",
     questions: 20,
-    color: "from-purple-500 to-indigo-500",
+    color: "from-green-500 to-lime-500",
     detail: "Introversão vs Extroversão, Intuição vs Sensação, Pensamento vs Sentimento, Julgamento vs Percepção",
   },
   {
@@ -153,7 +153,7 @@ const assessments = [
     name: "Big Five",
     description: "Avalie cinco dimensões fundamentais da sua personalidade com base em pesquisa científica.",
     questions: 25,
-    color: "from-indigo-500 to-blue-500",
+    color: "from-lime-500 to-blue-500",
     detail: "Abertura, Conscienciosidade, Extroversão, Amabilidade, Neuroticismo",
   },
   {
@@ -161,7 +161,7 @@ const assessments = [
     name: "DISC",
     description: "Entenda seu estilo comportamental no trabalho e como você se comunica com outros.",
     questions: 15,
-    color: "from-violet-500 to-purple-500",
+    color: "from-lime-500 to-green-500",
     detail: "Dominância, Influência, Estabilidade, Conformidade",
   },
   {
@@ -169,7 +169,7 @@ const assessments = [
     name: "Ikigai",
     description: "Encontre a interseção entre paixão, missão, vocação e profissão.",
     questions: 18,
-    color: "from-fuchsia-500 to-violet-500",
+    color: "from-fuchsia-500 to-lime-500",
     detail: "O que você ama, o que o mundo precisa, pelo que pode ser pago, no que é bom",
   },
   {
@@ -177,7 +177,7 @@ const assessments = [
     name: "Flow",
     description: "Identifique as condições e atividades que te colocam em estado de fluxo máximo.",
     questions: 12,
-    color: "from-purple-600 to-fuchsia-500",
+    color: "from-green-600 to-fuchsia-500",
     detail: "Desafio vs Habilidade, Foco, Feedback, Controle",
   },
 ];
@@ -268,10 +268,10 @@ export default function LandingPage() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="relative">
-              <Sparkles className="h-6 w-6 text-purple-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
-              <div className="absolute inset-0 blur-lg bg-purple-400/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <Sparkles className="h-6 w-6 text-green-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
+              <div className="absolute inset-0 blur-lg bg-green-400/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-gradient-to-r from-green-400 via-lime-400 to-lime-400 bg-clip-text text-transparent">
               Desbrava.Ai
             </span>
           </Link>
@@ -299,7 +299,7 @@ export default function LandingPage() {
             <Link href="/onboarding">
               <Button
                 size="sm"
-                className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-lg shadow-purple-500/20 transition-all duration-300 hover:shadow-purple-500/40 hover:scale-105"
+                className="bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 shadow-lg shadow-green-500/20 transition-all duration-300 hover:shadow-green-500/40 hover:scale-105"
               >
                 Começar Grátis
               </Button>
@@ -332,7 +332,7 @@ export default function LandingPage() {
                   <Button variant="outline" size="sm" className="w-full border-white/10">Login</Button>
                 </Link>
                 <Link href="/onboarding" className="flex-1">
-                  <Button size="sm" className="w-full bg-gradient-to-r from-purple-600 to-indigo-600">Começar Grátis</Button>
+                  <Button size="sm" className="w-full bg-gradient-to-r from-green-600 to-lime-600">Começar Grátis</Button>
                 </Link>
               </div>
             </div>
@@ -347,15 +347,15 @@ export default function LandingPage() {
         {/* Animated background orbs */}
         <div className="pointer-events-none absolute inset-0">
           <div
-            className="absolute top-[15%] left-[20%] h-[500px] w-[500px] rounded-full bg-purple-600/20 blur-[100px]"
+            className="absolute top-[15%] left-[20%] h-[500px] w-[500px] rounded-full bg-green-600/20 blur-[100px]"
             style={{ animation: "blob-1 12s ease-in-out infinite" }}
           />
           <div
-            className="absolute top-[30%] right-[15%] h-[400px] w-[400px] rounded-full bg-indigo-600/25 blur-[100px]"
+            className="absolute top-[30%] right-[15%] h-[400px] w-[400px] rounded-full bg-lime-600/25 blur-[100px]"
             style={{ animation: "blob-2 15s ease-in-out infinite" }}
           />
           <div
-            className="absolute bottom-[20%] left-[40%] h-[350px] w-[350px] rounded-full bg-violet-600/15 blur-[100px]"
+            className="absolute bottom-[20%] left-[40%] h-[350px] w-[350px] rounded-full bg-lime-600/15 blur-[100px]"
             style={{ animation: "blob-3 10s ease-in-out infinite" }}
           />
           <div
@@ -375,7 +375,7 @@ export default function LandingPage() {
         />
 
         {/* Gradient top edge */}
-        <div className="pointer-events-none absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
+        <div className="pointer-events-none absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/50 to-transparent" />
 
         {/* Floating assessment badges */}
         <div className="pointer-events-none absolute inset-0 hidden lg:block">
@@ -389,7 +389,7 @@ export default function LandingPage() {
               transition={{ delay: badge.delay + 0.8, duration: 0.6, type: "spring" }}
             >
               <div
-                className="px-4 py-2 rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md text-sm font-medium text-purple-300/80 shadow-lg shadow-purple-500/5"
+                className="px-4 py-2 rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md text-sm font-medium text-green-300/80 shadow-lg shadow-green-500/5"
                 style={{ animation: `float ${badge.duration}s ease-in-out infinite`, animationDelay: `${badge.delay}s` }}
               >
                 {badge.label}
@@ -410,7 +410,7 @@ export default function LandingPage() {
             <motion.div variants={fadeInDown} transition={{ duration: 0.6 }}>
               <Badge
                 variant="outline"
-                className="mx-auto border-purple-500/30 bg-purple-500/10 px-5 py-2 text-sm text-purple-300 backdrop-blur-sm"
+                className="mx-auto border-green-500/30 bg-green-500/10 px-5 py-2 text-sm text-green-300 backdrop-blur-sm"
               >
                 <Sparkles className="mr-2 h-3.5 w-3.5" />
                 Plataforma de Desenvolvimento Pessoal com IA
@@ -426,7 +426,7 @@ export default function LandingPage() {
               <span className="block bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
                 Descubra seu potencial.
               </span>
-              <span className="block mt-2 bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent"
+              <span className="block mt-2 bg-gradient-to-r from-green-400 via-lime-400 to-lime-400 bg-clip-text text-transparent"
                 style={{
                   backgroundSize: "200% 100%",
                   animation: "gradient-shift 6s ease-in-out infinite",
@@ -456,7 +456,7 @@ export default function LandingPage() {
               <Link href="/onboarding">
                 <Button
                   size="lg"
-                  className="group h-14 px-10 text-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-xl shadow-purple-500/25 transition-all duration-300 hover:shadow-purple-500/40 hover:scale-[1.02]"
+                  className="group h-14 px-10 text-lg bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-500 hover:to-lime-500 shadow-xl shadow-green-500/25 transition-all duration-300 hover:shadow-green-500/40 hover:scale-[1.02]"
                   style={{ animation: "pulse-glow 3s ease-in-out infinite" }}
                 >
                   Começar Jornada
@@ -467,7 +467,7 @@ export default function LandingPage() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="h-14 px-10 text-lg border-purple-500/20 hover:border-purple-500/40 hover:bg-purple-500/10 transition-all duration-300"
+                  className="h-14 px-10 text-lg border-green-500/20 hover:border-green-500/40 hover:bg-green-500/10 transition-all duration-300"
                 >
                   Saiba Mais
                 </Button>
@@ -487,7 +487,7 @@ export default function LandingPage() {
                   { value: "100%", label: "Gratuito" },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                    <div className="text-2xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
                       {stat.value}
                     </div>
                     <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
@@ -507,9 +507,9 @@ export default function LandingPage() {
       {/* ============================================================ */}
       <section id="recursos" className="relative px-6 py-32">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/30 to-transparent" />
           <div
-            className="absolute top-1/2 left-[60%] h-[400px] w-[400px] rounded-full bg-purple-600/8 blur-[120px]"
+            className="absolute top-1/2 left-[60%] h-[400px] w-[400px] rounded-full bg-green-600/8 blur-[120px]"
             style={{ animation: "blob-1 20s ease-in-out infinite" }}
           />
         </div>
@@ -525,7 +525,7 @@ export default function LandingPage() {
             <motion.div variants={fadeInUp} transition={{ duration: 0.5 }}>
               <Badge
                 variant="outline"
-                className="border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm text-purple-300"
+                className="border-green-500/30 bg-green-500/10 px-4 py-1.5 text-sm text-green-300"
               >
                 <Sparkles className="mr-2 h-3.5 w-3.5" />
                 Recursos
@@ -538,7 +538,7 @@ export default function LandingPage() {
             >
               Tudo que você precisa para{" "}
               <span
-                className="bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent"
+                className="bg-gradient-to-r from-green-400 via-lime-400 to-lime-400 bg-clip-text text-transparent"
                 style={{
                   backgroundSize: "200% 100%",
                   animation: "gradient-shift 5s ease-in-out infinite",
@@ -570,7 +570,7 @@ export default function LandingPage() {
                 variants={fadeInUp}
                 transition={{ duration: 0.5 }}
               >
-                <Card className="group relative h-full overflow-hidden border-white/[0.06] bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-purple-500/30 hover:bg-white/[0.06] hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-1">
+                <Card className="group relative h-full overflow-hidden border-white/[0.06] bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-green-500/30 hover:bg-white/[0.06] hover:shadow-2xl hover:shadow-green-500/10 hover:-translate-y-1">
                   <CardContent className="p-7 space-y-5">
                     {/* Icon */}
                     <div className="relative">
@@ -595,11 +595,11 @@ export default function LandingPage() {
                     </p>
 
                     {/* Animated accent line */}
-                    <div className="h-0.5 w-0 bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-500 group-hover:w-full rounded-full" />
+                    <div className="h-0.5 w-0 bg-gradient-to-r from-green-500 to-lime-500 transition-all duration-500 group-hover:w-full rounded-full" />
                   </CardContent>
 
                   {/* Hover glow overlay */}
-                  <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none bg-gradient-to-br from-purple-500/[0.03] to-transparent" />
+                  <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none bg-gradient-to-br from-green-500/[0.03] to-transparent" />
                 </Card>
               </motion.div>
             ))}
@@ -612,13 +612,13 @@ export default function LandingPage() {
       {/* ============================================================ */}
       <section id="como-funciona" className="relative px-6 py-32">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-lime-500/30 to-transparent" />
           <div
-            className="absolute bottom-[20%] right-[5%] h-[350px] w-[350px] rounded-full bg-indigo-600/10 blur-[100px]"
+            className="absolute bottom-[20%] right-[5%] h-[350px] w-[350px] rounded-full bg-lime-600/10 blur-[100px]"
             style={{ animation: "blob-2 16s ease-in-out infinite" }}
           />
           <div
-            className="absolute top-[30%] left-[5%] h-[250px] w-[250px] rounded-full bg-purple-600/8 blur-[80px]"
+            className="absolute top-[30%] left-[5%] h-[250px] w-[250px] rounded-full bg-green-600/8 blur-[80px]"
             style={{ animation: "blob-3 14s ease-in-out infinite" }}
           />
         </div>
@@ -634,7 +634,7 @@ export default function LandingPage() {
             <motion.div variants={fadeInUp} transition={{ duration: 0.5 }}>
               <Badge
                 variant="outline"
-                className="border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-300"
+                className="border-lime-500/30 bg-lime-500/10 px-4 py-1.5 text-sm text-lime-300"
               >
                 <Route className="mr-2 h-3.5 w-3.5" />
                 Como funciona
@@ -647,7 +647,7 @@ export default function LandingPage() {
             >
               Sua jornada em{" "}
               <span
-                className="bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent"
+                className="bg-gradient-to-r from-lime-400 via-lime-400 to-green-400 bg-clip-text text-transparent"
                 style={{
                   backgroundSize: "200% 100%",
                   animation: "gradient-shift 5s ease-in-out infinite",
@@ -667,9 +667,9 @@ export default function LandingPage() {
           >
             {/* Connection line - desktop */}
             <div className="absolute top-14 left-[10%] right-[10%] hidden lg:block">
-              <div className="h-[2px] w-full bg-gradient-to-r from-purple-500/10 via-indigo-500/20 to-purple-500/10 rounded-full" />
+              <div className="h-[2px] w-full bg-gradient-to-r from-green-500/10 via-lime-500/20 to-green-500/10 rounded-full" />
               <motion.div
-                className="absolute top-0 left-0 h-[2px] rounded-full bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-500"
+                className="absolute top-0 left-0 h-[2px] rounded-full bg-gradient-to-r from-green-500 via-lime-500 to-green-500"
                 initial={{ width: "0%" }}
                 whileInView={{ width: "100%" }}
                 viewport={{ once: true }}
@@ -679,7 +679,7 @@ export default function LandingPage() {
 
             {/* Connection line - mobile */}
             <div className="absolute top-0 bottom-0 left-[28px] lg:hidden">
-              <div className="h-full w-[2px] bg-gradient-to-b from-purple-500/10 via-indigo-500/20 to-purple-500/10 rounded-full" />
+              <div className="h-full w-[2px] bg-gradient-to-b from-green-500/10 via-lime-500/20 to-green-500/10 rounded-full" />
             </div>
 
             <div className="grid gap-10 lg:grid-cols-5 lg:gap-6">
@@ -692,8 +692,8 @@ export default function LandingPage() {
                 >
                   {/* Step circle */}
                   <div className="relative z-10 flex-shrink-0">
-                    <div className="relative flex h-[56px] w-[56px] lg:h-24 lg:w-24 items-center justify-center rounded-2xl border border-white/10 bg-background shadow-xl shadow-purple-500/5 transition-all duration-300 hover:border-purple-500/30 hover:shadow-purple-500/20">
-                      <div className="absolute -top-2 -right-2 flex h-6 w-6 lg:h-7 lg:w-7 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 text-[10px] lg:text-xs font-bold text-white shadow-lg shadow-purple-500/30">
+                    <div className="relative flex h-[56px] w-[56px] lg:h-24 lg:w-24 items-center justify-center rounded-2xl border border-white/10 bg-background shadow-xl shadow-green-500/5 transition-all duration-300 hover:border-green-500/30 hover:shadow-green-500/20">
+                      <div className="absolute -top-2 -right-2 flex h-6 w-6 lg:h-7 lg:w-7 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-lime-500 text-[10px] lg:text-xs font-bold text-white shadow-lg shadow-green-500/30">
                         {index + 1}
                       </div>
                       <step.icon className="h-6 w-6 lg:h-10 lg:w-10 text-primary" />
@@ -718,9 +718,9 @@ export default function LandingPage() {
       {/* ============================================================ */}
       <section id="assessments" className="relative px-6 py-32">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-lime-500/30 to-transparent" />
           <div
-            className="absolute top-[40%] left-[50%] -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-violet-600/8 blur-[120px]"
+            className="absolute top-[40%] left-[50%] -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-lime-600/8 blur-[120px]"
             style={{ animation: "blob-1 18s ease-in-out infinite" }}
           />
         </div>
@@ -736,7 +736,7 @@ export default function LandingPage() {
             <motion.div variants={fadeInUp} transition={{ duration: 0.5 }}>
               <Badge
                 variant="outline"
-                className="border-violet-500/30 bg-violet-500/10 px-4 py-1.5 text-sm text-violet-300"
+                className="border-lime-500/30 bg-lime-500/10 px-4 py-1.5 text-sm text-lime-300"
               >
                 <Brain className="mr-2 h-3.5 w-3.5" />
                 Assessments
@@ -749,7 +749,7 @@ export default function LandingPage() {
             >
               Conheça os{" "}
               <span
-                className="bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent"
+                className="bg-gradient-to-r from-lime-400 via-green-400 to-fuchsia-400 bg-clip-text text-transparent"
                 style={{
                   backgroundSize: "200% 100%",
                   animation: "gradient-shift 5s ease-in-out infinite",
@@ -781,7 +781,7 @@ export default function LandingPage() {
                 variants={scaleIn}
                 transition={{ duration: 0.5 }}
               >
-                <Card className="group relative h-full overflow-hidden border-white/[0.06] bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-transparent hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10">
+                <Card className="group relative h-full overflow-hidden border-white/[0.06] bg-white/[0.02] backdrop-blur-sm transition-all duration-500 hover:border-transparent hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/10">
                   {/* Gradient border on hover */}
                   <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${assessment.color} opacity-0 transition-opacity duration-500 group-hover:opacity-100 p-[1px]`}>
                     <div className="h-full w-full rounded-[11px] bg-background" />
@@ -812,7 +812,7 @@ export default function LandingPage() {
                     {/* Hidden detail on hover */}
                     <div className="overflow-hidden max-h-0 group-hover:max-h-24 transition-all duration-500 ease-in-out">
                       <div className="pt-3 border-t border-white/[0.06]">
-                        <p className="text-xs text-purple-300/70 leading-relaxed">
+                        <p className="text-xs text-green-300/70 leading-relaxed">
                           {assessment.detail}
                         </p>
                       </div>
@@ -830,7 +830,7 @@ export default function LandingPage() {
       {/* ============================================================ */}
       <section className="relative px-6 py-32">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/30 to-transparent" />
         </div>
 
         <motion.div
@@ -847,7 +847,7 @@ export default function LandingPage() {
           >
             {/* CTA gradient background */}
             <div
-              className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-indigo-900/60 to-violet-900/80"
+              className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-lime-900/60 to-lime-900/80"
               style={{
                 backgroundSize: "200% 200%",
                 animation: "gradient-shift 8s ease-in-out infinite",
@@ -893,8 +893,8 @@ export default function LandingPage() {
                 />
               ))}
               {/* Large glow spots */}
-              <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-purple-500/20 blur-[80px]" />
-              <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-indigo-500/20 blur-[80px]" />
+              <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-green-500/20 blur-[80px]" />
+              <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-lime-500/20 blur-[80px]" />
             </div>
 
             {/* Content */}
@@ -903,7 +903,7 @@ export default function LandingPage() {
                 variants={fadeInUp}
                 transition={{ duration: 0.5 }}
               >
-                <Star className="mx-auto h-12 w-12 text-purple-300" style={{ animation: "float 4s ease-in-out infinite" }} />
+                <Star className="mx-auto h-12 w-12 text-green-300" style={{ animation: "float 4s ease-in-out infinite" }} />
               </motion.div>
 
               <motion.h2
@@ -912,7 +912,7 @@ export default function LandingPage() {
                 className="text-3xl font-bold sm:text-5xl lg:text-6xl leading-tight"
               >
                 Pronto para se{" "}
-                <span className="bg-gradient-to-r from-purple-300 via-violet-300 to-indigo-300 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-green-300 via-lime-300 to-lime-300 bg-clip-text text-transparent">
                   descobrir
                 </span>
                 ?
@@ -921,7 +921,7 @@ export default function LandingPage() {
               <motion.p
                 variants={fadeInUp}
                 transition={{ duration: 0.5 }}
-                className="text-lg text-purple-100/70 max-w-xl mx-auto leading-relaxed"
+                className="text-lg text-green-100/70 max-w-xl mx-auto leading-relaxed"
               >
                 Comece agora sua jornada de autoconhecimento e desenvolvimento
                 profissional com o poder da inteligência artificial.
@@ -931,7 +931,7 @@ export default function LandingPage() {
                 <Link href="/onboarding">
                   <Button
                     size="lg"
-                    className="group h-16 px-12 text-lg bg-white text-purple-900 font-semibold hover:bg-white/90 shadow-2xl shadow-black/20 transition-all duration-300 hover:scale-105 hover:shadow-white/20"
+                    className="group h-16 px-12 text-lg bg-white text-green-900 font-semibold hover:bg-white/90 shadow-2xl shadow-black/20 transition-all duration-300 hover:scale-105 hover:shadow-white/20"
                   >
                     Comece Agora
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1.5" />
@@ -949,8 +949,8 @@ export default function LandingPage() {
       <footer className="border-t border-white/[0.06] px-6 py-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 sm:flex-row">
           <div className="flex items-center gap-2 group">
-            <Sparkles className="h-5 w-5 text-purple-400" />
-            <span className="font-semibold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+            <Sparkles className="h-5 w-5 text-green-400" />
+            <span className="font-semibold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
               Desbrava.Ai
             </span>
           </div>
