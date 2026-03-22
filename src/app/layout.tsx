@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Desbrava.Ai - Seu PDI Inteligente",
+  title: "Destrava.Ai - Seu PDI Inteligente",
   description:
     "Plataforma inteligente de desenvolvimento pessoal e profissional. Descubra seu potencial com assessments de autoconhecimento, PDI personalizado e curadoria inteligente de cursos.",
   keywords: [

@@ -37,27 +37,27 @@ export const useUserStore = create<UserState>((set) => ({
   loading: true,
   setUser: (user) => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("desbrava_user", JSON.stringify(user));
+      localStorage.setItem("destrava_user", JSON.stringify(user));
     }
     set({ user, loading: false });
   },
   clearUser: () => {
     if (typeof window !== "undefined") {
-      localStorage.removeItem("desbrava_user");
+      localStorage.removeItem("destrava_user");
     }
     set({ user: null, loading: false });
   },
   setLoading: (loading) => set({ loading }),
   loadFromStorage: () => {
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("desbrava_user");
+      const stored = localStorage.getItem("destrava_user");
       if (stored) {
         try {
           const user = JSON.parse(stored) as AppUser;
           set({ user, loading: false });
           return;
         } catch {
-          localStorage.removeItem("desbrava_user");
+          localStorage.removeItem("destrava_user");
         }
       }
     }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
@@ -11,7 +12,6 @@ import {
   BookOpen,
   CalendarCheck,
   CreditCard,
-  Sparkles,
   Menu,
   X,
   LogOut,
@@ -85,10 +85,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         {/* Logo */}
         <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-6">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <Sparkles className="h-6 w-6 text-sidebar-primary" />
-            <span className="text-lg font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
-              Desbrava.Ai
-            </span>
+            <Image src="/logo.png" alt="Destrava.Ai" width={260} height={62} className="h-14 w-auto" />
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -160,10 +157,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             <Menu className="h-5 w-5" />
           </Button>
           <div className="ml-3 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
-            <span className="font-semibold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
-              Desbrava.Ai
-            </span>
+            <Image src="/logo.png" alt="Destrava.Ai" width={260} height={62} className="h-14 w-auto" />
           </div>
         </header>
 

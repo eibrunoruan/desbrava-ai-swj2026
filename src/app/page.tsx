@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Brain,
   Target,
@@ -267,13 +268,7 @@ export default function LandingPage() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative">
-              <Sparkles className="h-6 w-6 text-green-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
-              <div className="absolute inset-0 blur-lg bg-green-400/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-green-400 via-lime-400 to-lime-400 bg-clip-text text-transparent">
-              Desbrava.Ai
-            </span>
+            <Image src="/logo.png" alt="Destrava.Ai" width={260} height={62} className="h-14 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
@@ -949,13 +944,10 @@ export default function LandingPage() {
       <footer className="border-t border-white/[0.06] px-6 py-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 sm:flex-row">
           <div className="flex items-center gap-2 group">
-            <Sparkles className="h-5 w-5 text-green-400" />
-            <span className="font-semibold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
-              Desbrava.Ai
-            </span>
+            <Image src="/logo.png" alt="Destrava.Ai" width={260} height={62} className="h-14 w-auto" />
           </div>
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Desbrava.Ai. Todos os direitos
+            &copy; {new Date().getFullYear()} Destrava.Ai. Todos os direitos
             reservados.
           </p>
         </div>

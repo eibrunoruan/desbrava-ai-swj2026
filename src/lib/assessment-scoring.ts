@@ -1,5 +1,5 @@
 // ============================================================
-// Assessment Scoring Functions – Desbrava.Ai
+// Assessment Scoring Functions – Destrava.Ai
 // ============================================================
 
 import type { Json } from "@/lib/supabase/types";

@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export default function AuthLayout({
   children,
@@ -16,12 +16,7 @@ export default function AuthLayout({
       <div className="relative z-10 w-full max-w-md space-y-8">
         {/* Logo */}
         <div className="flex flex-col items-center gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-green-600 to-lime-600 shadow-lg shadow-green-500/25">
-            <Sparkles className="h-7 w-7 text-white" />
-          </div>
-          <span className="text-2xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">
-            Desbrava.Ai
-          </span>
+          <Image src="/logo.png" alt="Destrava.Ai" width={300} height={72} className="h-20 w-auto" />
         </div>
 
         {children}
