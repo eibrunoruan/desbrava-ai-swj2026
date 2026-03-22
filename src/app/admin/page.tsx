@@ -22,12 +22,14 @@ interface Metrics {
     email: string | null;
     phone: string | null;
     source: string;
+    metadata: Record<string, string> | null;
     created_at: string;
   }>;
   ctaButtonCounts: Record<string, number>;
   landingPageViews: number;
   premiumUsers: number;
   assessmentsCompleted: number;
+  utmSummary: Record<string, number>;
 }
 
 const CTA_LABELS: Record<string, string> = {
@@ -180,6 +182,7 @@ export default function AdminPage() {
                         <th className="pb-3 pr-4 font-medium">Nome</th>
                         <th className="pb-3 pr-4 font-medium">Email</th>
                         <th className="pb-3 pr-4 font-medium">Telefone</th>
+                        <th className="pb-3 pr-4 font-medium">Origem (UTM)</th>
                         <th className="pb-3 font-medium">Data</th>
                       </tr>
                     </thead>
@@ -192,6 +195,19 @@ export default function AdminPage() {
                             <span className="rounded-md bg-green-500/10 px-2 py-1 text-green-400">
                               {lead.phone || "-"}
                             </span>
+                          </td>
+                          <td className="py-3 pr-4">
+                            {lead.metadata && Object.keys(lead.metadata).length > 0 ? (
+                              <div className="flex flex-wrap gap-1">
+                                {Object.entries(lead.metadata).map(([k, v]) => (
+                                  <span key={k} className="rounded bg-lime-500/10 px-1.5 py-0.5 text-xs text-lime-400">
+                                    {k.replace("utm_", "")}: {v}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : (
+                              <span className="text-white/30">Direto</span>
+                            )}
                           </td>
                           <td className="py-3 text-white/50">{formatDate(lead.created_at)}</td>
                         </tr>
@@ -233,6 +249,56 @@ export default function AdminPage() {
                     </div>
                   ))
                 )}
+              </div>
+            </div>
+
+            {/* Origens de Tráfego (UTM) */}
+            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-500/10">
+                  <Eye className="h-4 w-4 text-cyan-400" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-semibold">Origens de Tráfego</h2>
+                  <p className="text-sm text-white/40">De onde vêm os visitantes (UTM params)</p>
+                </div>
+              </div>
+
+              {!metrics.utmSummary || Object.keys(metrics.utmSummary).length === 0 ? (
+                <p className="py-8 text-center text-white/30">
+                  Nenhum tráfego com UTM detectado ainda.<br />
+                  <span className="text-xs text-white/20">Use links como: seusite.com/?utm_source=instagram&utm_medium=stories&utm_campaign=lancamento</span>
+                </p>
+              ) : (
+                <div className="space-y-3">
+                  {Object.entries(metrics.utmSummary)
+                    .sort(([, a], [, b]) => b - a)
+                    .map(([source, count]) => {
+                      const maxUtm = Math.max(...Object.values(metrics.utmSummary));
+                      return (
+                        <div key={source} className="space-y-1">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-white/70">{source}</span>
+                            <span className="font-medium text-cyan-400">{count} visita{count !== 1 ? "s" : ""}</span>
+                          </div>
+                          <div className="h-6 overflow-hidden rounded-lg bg-white/5">
+                            <div
+                              className="flex h-full items-center rounded-lg bg-gradient-to-r from-cyan-600/80 to-teal-600/80 px-3 text-xs font-medium transition-all duration-500"
+                              style={{ width: `${Math.max((count / maxUtm) * 100, 8)}%` }}
+                            >
+                              {count}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              )}
+
+              <div className="mt-4 rounded-lg border border-white/5 bg-white/[0.02] p-3">
+                <p className="text-xs text-white/30">
+                  Visitantes sem UTM (tráfego direto): {metrics.landingPageViews - Object.values(metrics.utmSummary || {}).reduce((a, b) => a + b, 0)}
+                </p>
               </div>
             </div>
 

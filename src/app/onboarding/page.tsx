@@ -311,8 +311,15 @@ export default function OnboardingPage() {
   const onSubmit = async (data: OnboardingFormData) => {
     setIsSubmitting(true);
     try {
+      // Capture UTM params from session
+      let utms: Record<string, string> = {};
+      try {
+        const stored = sessionStorage.getItem("destrava_utms");
+        if (stored) utms = JSON.parse(stored);
+      } catch { /* ignore */ }
+
       const formData = new FormData();
-      formData.append("data", JSON.stringify({ ...data, plan: selectedPlan }));
+      formData.append("data", JSON.stringify({ ...data, plan: selectedPlan, utms }));
       if (cvFile) {
         formData.append("cv", cvFile);
       }

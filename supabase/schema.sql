@@ -214,6 +214,7 @@ create table leads (
   email text,
   phone text,
   source text not null,
+  metadata jsonb default '{}',
   created_at timestamptz default now()
 );
 

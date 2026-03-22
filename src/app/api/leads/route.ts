@@ -4,7 +4,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { user_id, name, email, phone, source } = body;
+    const { user_id, name, email, phone, source, utms } = body;
 
     if (!source) {
       return NextResponse.json(
@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
       email: email || null,
       phone: phone || null,
       source,
+      metadata: utms && Object.keys(utms).length > 0 ? utms : {},
     });
 
     if (error) {

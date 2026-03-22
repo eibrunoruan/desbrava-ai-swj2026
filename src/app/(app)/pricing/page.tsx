@@ -60,6 +60,13 @@ export default function PricingPage() {
     setConfirmLoading(true);
     try {
       // 1. Save lead
+      // Capture UTM params
+      let utms: Record<string, string> = {};
+      try {
+        const stored = sessionStorage.getItem("destrava_utms");
+        if (stored) utms = JSON.parse(stored);
+      } catch { /* ignore */ }
+
       await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -69,6 +76,7 @@ export default function PricingPage() {
           email: user.email,
           phone: phone.trim(),
           source: "premium_plan",
+          utms,
         }),
       });
 

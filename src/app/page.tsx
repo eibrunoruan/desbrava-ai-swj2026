@@ -33,11 +33,28 @@ import { useState, useEffect } from "react";
 /*  Analytics helper                                                    */
 /* ------------------------------------------------------------------ */
 
+function getUtmParams(): Record<string, string> {
+  if (typeof window === "undefined") return {};
+  const params = new URLSearchParams(window.location.search);
+  const utms: Record<string, string> = {};
+  for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"]) {
+    const val = params.get(key);
+    if (val) utms[key] = val;
+  }
+  // Persist UTMs in sessionStorage so they survive navigation
+  if (Object.keys(utms).length > 0) {
+    sessionStorage.setItem("destrava_utms", JSON.stringify(utms));
+  }
+  const stored = sessionStorage.getItem("destrava_utms");
+  return stored ? JSON.parse(stored) : {};
+}
+
 const trackEvent = (event_type: string, event_data: Record<string, string> = {}, page = "landing") => {
+  const utms = getUtmParams();
   fetch("/api/analytics", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ event_type, event_data, page }),
+    body: JSON.stringify({ event_type, event_data: { ...event_data, ...utms }, page }),
   }).catch(() => {});
 };
 

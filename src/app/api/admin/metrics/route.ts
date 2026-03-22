@@ -61,6 +61,23 @@ export async function GET() {
       .select("*", { count: "exact", head: true })
       .eq("status", "completed");
 
+    // i) UTM source summary from analytics page_view events
+    const { data: utmEvents } = await supabaseAdmin
+      .from("analytics")
+      .select("event_data")
+      .eq("event_type", "page_view")
+      .eq("page", "landing");
+
+    const utmSummary: Record<string, number> = {};
+    for (const row of utmEvents || []) {
+      const data = row.event_data as Record<string, string> | null;
+      const source = data?.utm_source;
+      if (source) {
+        const key = `${source}${data?.utm_medium ? ` / ${data.utm_medium}` : ""}${data?.utm_campaign ? ` / ${data.utm_campaign}` : ""}`;
+        utmSummary[key] = (utmSummary[key] || 0) + 1;
+      }
+    }
+
     return NextResponse.json({
       totalUsers: totalUsers || 0,
       users: users || [],
@@ -70,6 +87,7 @@ export async function GET() {
       landingPageViews: landingPageViews || 0,
       premiumUsers: premiumUsers || 0,
       assessmentsCompleted: assessmentsCompleted || 0,
+      utmSummary,
     });
   } catch (err) {
     console.error("Admin metrics error:", err);
