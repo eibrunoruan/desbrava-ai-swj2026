@@ -19,6 +19,9 @@ import {
   Check,
   Sparkles,
   Lock,
+  Crown,
+  CreditCard,
+  Zap,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -103,8 +106,25 @@ const ROLE_SUGGESTIONS = [
 
 const STEPS = [
   { label: "Dados Pessoais", icon: User },
+  { label: "Plano", icon: CreditCard },
   { label: "Objetivo", icon: Target },
   { label: "Curriculo", icon: FileUp },
+];
+
+const FREE_FEATURES = [
+  "5 Assessments de Autoconhecimento",
+  "Perfil Consolidado com IA",
+  "Diagnóstico Cruzado de Personalidade",
+  "Insights de Personalidade",
+];
+
+const PREMIUM_FEATURES = [
+  "Tudo do plano Gratuito",
+  "PDI Personalizado com IA",
+  "Curadoria Inteligente de Cursos",
+  "Acompanhamento e Check-ins",
+  "Trajetória Comparada",
+  "Suporte Prioritário",
 ];
 
 // ─── Animation variants ─────────────────────────────────────────────
@@ -147,6 +167,9 @@ export default function OnboardingPage() {
   const [direction, setDirection] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Plan state
+  const [selectedPlan, setSelectedPlan] = useState<"free" | "premium">("free");
+
   // CV state
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [cvProcessing, setCvProcessing] = useState(false);
@@ -187,15 +210,18 @@ export default function OnboardingPage() {
   const languages = watch("languages");
 
   // ── Step navigation ──────────────────────────────────────────────
+  const totalSteps = 4;
   const goNext = async () => {
     let fieldsToValidate: (keyof OnboardingFormData)[] = [];
     if (step === 0) {
       fieldsToValidate = ["name", "email", "password"];
     }
-    const isValid = await trigger(fieldsToValidate);
-    if (!isValid) return;
+    if (fieldsToValidate.length > 0) {
+      const isValid = await trigger(fieldsToValidate);
+      if (!isValid) return;
+    }
     setDirection(1);
-    setStep((s) => Math.min(s + 1, 2));
+    setStep((s) => Math.min(s + 1, totalSteps - 1));
   };
 
   const goBack = () => {
@@ -286,7 +312,7 @@ export default function OnboardingPage() {
     setIsSubmitting(true);
     try {
       const formData = new FormData();
-      formData.append("data", JSON.stringify(data));
+      formData.append("data", JSON.stringify({ ...data, plan: selectedPlan }));
       if (cvFile) {
         formData.append("cv", cvFile);
       }
@@ -318,7 +344,7 @@ export default function OnboardingPage() {
   };
 
   // ── Render helpers ───────────────────────────────────────────────
-  const progressValue = ((step + 1) / 3) * 100;
+  const progressValue = ((step + 1) / totalSteps) * 100;
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -381,7 +407,7 @@ export default function OnboardingPage() {
           className="h-1.5 bg-green-900/30 [&>div]:bg-gradient-to-r [&>div]:from-green-500 [&>div]:to-lime-500"
         />
         <p className="text-center text-xs text-green-400/60 mt-2">
-          Passo {step + 1} de 3
+          Passo {step + 1} de {totalSteps}
         </p>
       </motion.div>
 
@@ -586,6 +612,118 @@ export default function OnboardingPage() {
 
           {step === 1 && (
             <motion.div
+              key="step-plan"
+              custom={direction}
+              variants={pageVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={pageTransition}
+            >
+              <Card className="bg-white/5 border-green-500/10 backdrop-blur-xl shadow-2xl shadow-green-900/20">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-white">
+                    Escolha seu Plano
+                  </CardTitle>
+                  <CardDescription className="text-green-300/60">
+                    Comece gratuitamente ou desbloqueie todo o potencial da plataforma.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Free Plan */}
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setSelectedPlan("free")}
+                      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedPlan("free"); }}
+                      className={`cursor-pointer relative rounded-xl p-5 border-2 transition-all ${
+                        selectedPlan === "free"
+                          ? "border-green-400 bg-green-500/10 shadow-lg shadow-green-500/10"
+                          : "border-white/10 bg-white/5 hover:border-white/20"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10">
+                          <Zap className="h-5 w-5 text-green-400" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-white">Gratuito</h3>
+                          <p className="text-2xl font-bold text-green-400">R$0</p>
+                        </div>
+                      </div>
+                      <ul className="space-y-2">
+                        {FREE_FEATURES.map((f) => (
+                          <li key={f} className="flex items-start gap-2 text-sm text-green-200/70">
+                            <Check className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                      {selectedPlan === "free" && (
+                        <div className="absolute top-3 right-3">
+                          <div className="h-5 w-5 rounded-full bg-green-500 flex items-center justify-center">
+                            <Check className="h-3 w-3 text-black" />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Premium Plan */}
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setSelectedPlan("premium")}
+                      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedPlan("premium"); }}
+                      className={`cursor-pointer relative rounded-xl p-5 border-2 transition-all ${
+                        selectedPlan === "premium"
+                          ? "border-lime-400 bg-lime-500/10 shadow-lg shadow-lime-500/10"
+                          : "border-white/10 bg-white/5 hover:border-white/20"
+                      }`}
+                    >
+                      <div className="absolute -top-3 left-4">
+                        <span className="px-3 py-0.5 bg-gradient-to-r from-green-500 to-lime-500 text-black text-[10px] font-bold uppercase tracking-wider rounded-full">
+                          Recomendado
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-lime-500">
+                          <Crown className="h-5 w-5 text-black" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-white">Premium</h3>
+                          <p className="text-2xl font-bold text-lime-400">
+                            R$29,90<span className="text-sm font-normal text-lime-400/60">/mês</span>
+                          </p>
+                        </div>
+                      </div>
+                      <ul className="space-y-2">
+                        {PREMIUM_FEATURES.map((f) => (
+                          <li key={f} className="flex items-start gap-2 text-sm text-green-200/70">
+                            <Check className="h-4 w-4 text-lime-500 mt-0.5 shrink-0" />
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                      {selectedPlan === "premium" && (
+                        <div className="absolute top-3 right-3">
+                          <div className="h-5 w-5 rounded-full bg-lime-500 flex items-center justify-center">
+                            <Check className="h-3 w-3 text-black" />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-center text-xs text-green-400/40 mt-4">
+                    Voce pode mudar de plano a qualquer momento.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+
+          {step === 2 && (
+            <motion.div
               key="step2"
               custom={direction}
               variants={pageVariants}
@@ -678,7 +816,7 @@ export default function OnboardingPage() {
             </motion.div>
           )}
 
-          {step === 2 && (
+          {step === 3 && (
             <motion.div
               key="step3"
               custom={direction}
@@ -908,7 +1046,7 @@ export default function OnboardingPage() {
             <div />
           )}
 
-          {step < 2 ? (
+          {step < totalSteps - 1 ? (
             <Button
               type="button"
               onClick={goNext}

@@ -86,6 +86,7 @@ export async function POST(request: NextRequest) {
       cv_url: cvUrl,
       cv_extracted_data: cvExtractedData,
       onboarding_completed: true,
+      plan: data.plan === "premium" ? "premium" : "free",
       updated_at: new Date().toISOString(),
     };
 
